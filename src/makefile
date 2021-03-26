@@ -10,7 +10,7 @@ run:
 	${RUN} ${FLAGS} negocio/SistemaMonitoria
 
 compile: dados negocio/SistemaMonitoria.java
-	${CC} ${FLAGS} negocio/SistemaMonitoria.java 
+	${CC} ${FLAGS} negocio/*.java 
 
 dados: 
 	${CC} ${FLAGS} dados/*.java
