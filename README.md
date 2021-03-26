@@ -4,7 +4,19 @@
 
 - [ ] Apresentação
 - [ ] Relatório de Avaliação
-- [ ] Código
+- Código:
+	* Classes:
+		* [ \ ] Matéria (quase pronto)
+		* [ \ ] Aluno (quase pronto)
+		* [ ] Professor
+		* [ ] Monitor
+		* [ ] Avaliação
+		* [ ] Discussão
+		* [ ] Resposta
+		* [ ] Post
+	* [ ] Algo mais ?
+	* [ ] Interface ?
+	* [ ] Testes
 
 ## Done:
 
