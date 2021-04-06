@@ -1,14 +1,12 @@
 package dados;
 
 
-public class Monitor {
-    private String nome, cpf;
+public class Monitor extends Pessoa {
     private Materia materia;
     private float score; 
 
-    public Monitor(String nome, String cpf, Materia materia, float score) {
-        this.nome = nome;
-        this.cpf = cpf;
+    public Monitor(String nome, String cpf, String senha, Materia materia, float score) {
+        super(nome,cpf,senha);
         this.materia = materia;
         this.score = score;
     }
