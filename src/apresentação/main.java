@@ -1,9 +1,13 @@
 package apresentação;
 
-import java.util.Scanner;
+import negocio.*;
+import dados.*;
+import java.util.*;
 
 public class main {
 
+    public static SistemaMonitoria sistema = new SistemaMonitoria();
+    
     public static void main(String[] args) {
         int opcao = 0;
         do{
@@ -70,4 +74,52 @@ public class main {
      
         return sc.nextInt();
     }
+    
+    
+    
+    public static void criaMateria(){
+        Materia materia = new Materia();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Qual o ID da materia?");
+        materia.setId(sc.nextInt());
+        System.out.println("Qual o nome da materia?");
+        materia.setNome(sc.nextLine());
+        ArrayList<Aluno> lista_alunos = new ArrayList<Aluno>();
+        materia.setLista_alunos(lista_alunos);
+        ArrayList<Professor> lista_professores = new ArrayList<Professor>();
+        materia.setLista_professores(lista_professores);
+        ArrayList<Discussao> lista_discussoes = new ArrayList<Discussao>();
+        materia.setLista_discussoes(lista_discussoes);
+        ArrayList<Monitor> lista_monitores = new ArrayList<Monitor>();
+        materia.setLista_monitores(lista_monitores);
+        SistemaMonitoria.adicionaMateria(materia); // criar funcao no sistema
+    }
+    
+    public static void excluiMateria(){
+        
+    }
+    
+    public static void editaMateria(){
+        mostraMaterias();
+        // mágica pra editar a materia depois de escolher;
+
+    }
+    
+    public static void mostraMaterias(){
+        // mostrar todas as materias e talz
+    }
+    
+    public static void criaAluno(){
+        Aluno a = new Aluno();
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Qual o nome do Aluno?");
+        a.setNome(sc.nextLine());
+        System.out.println("Qual o CPF do aluno?");
+        a.setCpf(sc.nextLine());
+        System.out.println("Qual a senha desejada para login?");
+        a.setSenha(sc.nextLine());
+    }
+    
+    
 }

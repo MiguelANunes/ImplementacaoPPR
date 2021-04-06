@@ -11,6 +11,15 @@ public class Materia {
     private List<Discussao> lista_discussoes;
     private List<Monitor> lista_monitores;
     
+    public Materia(){ // construtor vazio, para poder chamar na main
+        this.id = id;
+        this.nome = nome;
+        this.lista_alunos = lista_alunos;
+        this.lista_professores = lista_professores;
+        this.lista_discussoes = lista_discussoes;
+        this.lista_monitores = lista_monitores;
+    }
+    
     public Materia(int id, String nome, List<Aluno> lista_alunos, List<Professor> lista_professores,
             List<Discussao> lista_discussoes, List<Monitor> lista_monitores) {
         this.id = id;
@@ -92,6 +101,7 @@ public class Materia {
         for (Discussao D : this.lista_discussoes){
             if (D.getID() == alvo.getID()){
                 D.setListaPosts(D.getListaPosts().add(novopost));
+                
             }
         }
     }

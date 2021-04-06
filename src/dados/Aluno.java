@@ -1,20 +1,22 @@
 package dados;
 
-public class Aluno {
-    private int cpf;
-    private String senha;
-    private String nome;
+public class Aluno extends Pessoa {
 
-    public Aluno(int cpf, String senha, String nome) {
-        this.cpf = cpf;
-        this.senha = senha;
-        this.nome = nome;
+
+    
+    public Aluno(String nome, String cpf, String senha) {
+        super(nome,cpf,senha);
     }
-
-    public int getCpf() {
+    
+    public Aluno(){
+        
+    }
+        
+    
+    public String getCpf() {
         return cpf;
     }
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
     public String getSenha() {
