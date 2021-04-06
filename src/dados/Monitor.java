@@ -1,23 +1,25 @@
 package dados;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Monitor extends Pessoa {
     private Materia materia;
     private float score; 
+    private List<Avaliacao> listaAvaliacao = new ArrayList();
+    private int avaliacaoCount=0;
 
     public Monitor(String nome, String cpf, String senha, Materia materia, float score) {
         super(nome,cpf,senha);
         this.materia = materia;
         this.score = score;
+        this.listaAvaliacao = avaliacao;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
+    public void AdicionaAvaliacao(Avaliacao a) {
+		listaAvaliacao.add(a);
+		avaliacaoCount++;
+	}
 
     public Materia getMateria() {
         return materia;
@@ -25,14 +27,6 @@ public class Monitor extends Pessoa {
 
     public float getScore() {
         return score;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public void setMateria(Materia materia) {
@@ -43,24 +37,18 @@ public class Monitor extends Pessoa {
         this.score = score;
     }
 
-
     public void login(){
     // void por hora    
     }
-    
+
     public void logout(){
     // void por hora
     }
 
-    public void relatorioMonitor(){
-        // ???
-    }
-
-    
     @Override
     public String toString() {
         return "Monitor{" + "nome: " + nome + ", cpf: " + cpf + ", materia: " + materia + ", score: " + score + '}';
     }
 
-    
+
 }

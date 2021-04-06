@@ -20,10 +20,5 @@ public class Post {
     public String toString() {
         return "Post {" + "pergunta: " + this.pergunta + " .}";
     }
-    
-    
-    
-    
-    
-    
+
 }
