@@ -1,18 +1,29 @@
 package dados;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Monitor {
     private String nome, cpf;
     private Materia materia;
     private float score; 
+    private List<Avaliacao> listaAvaliacao = new ArrayList();
+    private int avaliacaoCount=0;
 
-    public Monitor(String nome, String cpf, Materia materia, float score) {
+    public Monitor(String nome, String cpf, Materia materia, float score, List<Avaliacao> avaliacao) {
         this.nome = nome;
         this.cpf = cpf;
         this.materia = materia;
         this.score = score;
+        this.listaAvaliacao = avaliacao;
     }
 
-    public String getNome() {
+    public void AdicionaAvaliacao(Avaliacao a) {
+		listaAvaliacao.add(a);
+		avaliacaoCount++;
+	}
+
+	public String getNome() {
         return nome;
     }
 
@@ -47,7 +58,7 @@ public class Monitor {
     public void login(){
     // void por hora    
     }
-    
+
     public void logout(){
     // void por hora
     }
@@ -57,5 +68,5 @@ public class Monitor {
         return "Monitor{" + "nome: " + nome + ", cpf: " + cpf + ", materia: " + materia + ", score: " + score + '}';
     }
 
-    
+
 }

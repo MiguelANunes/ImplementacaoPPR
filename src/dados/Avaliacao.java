@@ -15,7 +15,7 @@ public class Avaliacao {
     public int getID(){
         return id;
     }
-    
+
     public double getRanking() {
         return ranking;
     }
@@ -27,7 +27,7 @@ public class Avaliacao {
     public void setID(int id){
         this.id = id;
     }
-    
+
     public void setRanking(double ranking) {
         this.ranking = ranking;
     }
@@ -40,5 +40,5 @@ public class Avaliacao {
     public String toString() {
         return "Avaliacao {" + "ID = " + this.id + "ranking: " + this.ranking + ", descricao: " + this.descricao + "}";
     }
- 
+
 }
