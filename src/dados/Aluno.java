@@ -35,10 +35,10 @@ public class Aluno {
         return "Aluno [cpf=" + cpf + ", nome=" + nome + ", senha=" + senha + "]";
     }
 
-    // public bool login(){ 
-    //     // retorna True/False se consegui ou não fazer login
-    //     // pra implementar isso precisa antes implementar a parte de salvar dados do Aluno
-    // }
+    public bool login(){ 
+        // retorna True/False se consegui ou não fazer login
+        // pra implementar isso precisa antes implementar a parte de salvar dados do Aluno
+    }
 
     public void logout(){
         // não sei o que tem que fazer aqui
@@ -51,6 +51,12 @@ public class Aluno {
 
     public void editarDiscussao(){
         // ?
+        // creio que não é possível implementar esse método pois na classe
+        // discussão, não há nenhuma informação referente ao autor de uma discussão, logo
+        // não teria como garantir que um aluno que está editando uma discussão
+        // é o mesmo que criou ela
+        // (bem, dizer que é impossível é uma afirmação muito forte, mas seria uma grandissíma gambiarra
+        // pra implementar, e eu creio que não é isso que o projeto queria)
     }
 
     public void avaliarMonitor(){

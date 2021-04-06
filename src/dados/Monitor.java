@@ -1,6 +1,5 @@
 package dados;
 
-
 public class Monitor {
     private String nome, cpf;
     private Materia materia;
@@ -45,7 +44,6 @@ public class Monitor {
         this.score = score;
     }
 
-
     public void login(){
     // void por hora    
     }
@@ -55,10 +53,15 @@ public class Monitor {
     }
 
     public void relatorioMonitor(){
-        // ???
+        // há uma menção sobre relatório de monitor no projeto, mas não é
+        // bem definido o que deve ser esse relatório
+        // "Um professor que orienta o monitor, pode pedir relatório sobre seu ranking atual para visualizar o
+        // esforço feito pelo monitor perante dúvidas de monitoria."
+        // isso deveria apenas retornar o ranking do monitor ?
+        //                              a médias da avaliações ?
+        // não está claro o que deve ser feito
     }
 
-    
     @Override
     public String toString() {
         return "Monitor{" + "nome: " + nome + ", cpf: " + cpf + ", materia: " + materia + ", score: " + score + '}';

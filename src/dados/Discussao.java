@@ -37,7 +37,7 @@ public class Discussao {
     @Override
     public String toString(){
         return "Titulo: " +this.titulo + "\nDescricao: " +this.conteudo + " .";
-}
+    }
     
 }
 

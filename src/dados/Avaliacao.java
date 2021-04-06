@@ -40,9 +40,5 @@ public class Avaliacao {
     public String toString() {
         return "Avaliacao {" + "ID = " + this.id + "ranking: " + this.ranking + ", descricao: " + this.descricao + "}";
     }
-    
-    
-    
-    
-    
+ 
 }

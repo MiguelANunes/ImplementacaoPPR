@@ -21,6 +21,4 @@ public class Resposta {
         return "Resposta: " + this.resposta + ".";
     }
     
-     
-    
 }
