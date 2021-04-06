@@ -34,6 +34,9 @@ public class Professor {
     // void por hora
     }
     
+    public void relatorioMonitor(){
+        
+    }
     
     @Override
     public String toString() {

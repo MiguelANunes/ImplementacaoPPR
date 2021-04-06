@@ -58,7 +58,13 @@ public class Materia {
     public void setLista_discussoes(List<Discussao> lista_discussoes) {
         this.lista_discussoes = lista_discussoes;
     }
-
+    
+    @Override
+    public String toString() {
+        return "Materia [id=" + id + ", lista_alunos=" + lista_alunos + ", lista_discussoes=" + lista_discussoes
+                + ", lista_professores=" + lista_professores + ", nome=" + nome + "]";
+    }
+    
     public void adicionarAluno(Aluno novo_aluno){
         this.lista_alunos.add(novo_aluno);
     }
@@ -73,5 +79,6 @@ public class Materia {
         // post, logo, não tem como adicionar um post há uma discussão
         return ;
     }
+
     
 }
