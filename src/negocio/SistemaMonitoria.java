@@ -1,14 +1,14 @@
 package negocio;
 
-public class SistemaMonitoria{
+import java.util.*;
+import java.util.Collections;
 
-    public static void main (String[] args){
-        System.out.println("Fucking Java");
-        adicionarMateria();
-    }
 
-    public static void adicionarMateria(){
-        System.out.println("Fucking Metodos");
-    }
+public class SistemaMonitoria {
+    // precisa colocar tudo que é criado na main AQUI.
 
+    
+    
+    
+    
 }
