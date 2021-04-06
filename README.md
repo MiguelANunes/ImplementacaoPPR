@@ -6,8 +6,10 @@
 - [ ] Relatório de Avaliação
 - Código:
 	* Classes:
-		* [ \ ] Matéria (quase pronto)
-		* [ \ ] Aluno (quase pronto)
+		* [ ] Matéria
+			* 
+		* [ ] Aluno
+			* Falta: login/logout, criar/editarDiscussão, avaliarMonitor
 		* [ ] Professor
 		* [ ] Monitor
 		* [ ] Avaliação

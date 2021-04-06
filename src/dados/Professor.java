@@ -34,8 +34,11 @@ public class Professor {
     // void por hora
     }
     
+    public void relatorioMonitor(){
+        
+    }
     
-        @Override
+    @Override
     public String toString() {
         return "Professor:" + this.nome + " , CPF: " + this.cpf + "senha: " + this.senha + " .";
         // disclaimer: mostrar o campo senha aqui é puramente para propósitos de debug.

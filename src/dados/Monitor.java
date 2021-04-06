@@ -1,6 +1,5 @@
 package dados;
 
-
 public class Monitor {
     private String nome, cpf;
     private Materia materia;
@@ -45,7 +44,6 @@ public class Monitor {
         this.score = score;
     }
 
-
     public void login(){
     // void por hora    
     }
@@ -54,11 +52,6 @@ public class Monitor {
     // void por hora
     }
 
-    public void relatorioMonitor(){
-        // ???
-    }
-
-    
     @Override
     public String toString() {
         return "Monitor{" + "nome: " + nome + ", cpf: " + cpf + ", materia: " + materia + ", score: " + score + '}';
