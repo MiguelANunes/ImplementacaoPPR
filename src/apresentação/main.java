@@ -12,19 +12,10 @@ public class main {
     
     public static void main(String[] args) {
         int opcao = 0;
-
-        // Materia m = new Materia();
-        // sistema.AdicionaMateria(m); // não é muito necessário por enquanto, gera confusão desnecessária
-
         sistema.inicializarDados();
-        // for(Materia m1: sistema.getListaMateria()){
-        //     System.out.println(m1.getId());
-        //     System.out.println(m1.getNome());
-        // }
 
         do{
             opcao = menu();
-
                 switch(opcao){
                     case 1:
                         criaMateria();
@@ -56,9 +47,7 @@ public class main {
                         break;
                 }
             } while(opcao != -1);
-
             sistema.salvarDados();
-            
         }
    
     private static int menu(){ 
@@ -108,10 +97,7 @@ public class main {
         sc.nextLine();
         System.out.println("Qual o novo nome que deseja para a materia?");
         m.setNome(sc.nextLine());
-        System.out.println("Alteracao Concluida!");
-        
-        // mágica pra editar a materia depois de escolher;
-    
+        System.out.println("Alteracao Concluida!");    
     }
     
     public static Materia mostraMaterias(){
