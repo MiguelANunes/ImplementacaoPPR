@@ -1,9 +1,26 @@
 package dados;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 
 public class Post implements Serializable {
     private String pergunta;
+    private List<Resposta> listaResposta = new ArrayList();
+    private int respostaCount=0;
+    
+    public void AdicionaResposta(Resposta r) {
+		listaResposta.add(r);
+		respostaCount++;
+	}
+    public void removeResposta(Resposta r){
+        listaResposta.remove(r);
+        respostaCount--;
+    }
+    public List<Resposta> consultaResposta(){
+        List<Resposta> listaRetorno = new ArrayList(listaResposta);
+        return listaRetorno;
+    }
 
     public Post(){
 
@@ -25,10 +42,5 @@ public class Post implements Serializable {
     public String toString() {
         return "Post {" + "pergunta: " + this.pergunta + " .}";
     }
-    
-    
-    
-    
-    
-    
+
 }
