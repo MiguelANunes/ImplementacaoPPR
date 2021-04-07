@@ -155,7 +155,7 @@ public class SistemaMonitoria {
         try{
             String currentpath = System.getProperty("user.dir");
 
-            if(currentpath.contains("src")){ // caso "src" esteja no path do projeto, é removido, pois isso já está no
+            if(currentpath.endsWith("src")){ // caso "src" esteja no fim path do projeto, é removido, pois isso já está no
                 currentpath = currentpath.substring(0, currentpath.length()-3);// path do arquivo a ser aberto
             }
 
@@ -366,7 +366,7 @@ public class SistemaMonitoria {
             OutputStream arquivoDiscussao        = new FileOutputStream(".//armazenamento//Discussão.txt");
             ObjectOutputStream escritorDiscussao = new ObjectOutputStream (arquivoDiscussao);
 
-            OutputStream arquivoResposta         = new FileOutputStream(".//armazenamento//Resposta.txt");
+            OutputStream arquivoResposta         = new FileOutputStream(currentpath + "/src/armazenamento/Resposta.txt");
             ObjectOutputStream escritorResposta  = new ObjectOutputStream (arquivoResposta);
 
             for(Resposta R: listaResposta)
@@ -374,7 +374,7 @@ public class SistemaMonitoria {
             
                 escritorResposta.close();
 
-            OutputStream arquivoPost             = new FileOutputStream(".//armazenamento//Post.txt");
+            OutputStream arquivoPost             = new FileOutputStream(currentpath + "/src/armazenamento/Post.txt");
             ObjectOutputStream escritorPost      = new ObjectOutputStream (arquivoPost);
 
             for(Post P: listaPost)
