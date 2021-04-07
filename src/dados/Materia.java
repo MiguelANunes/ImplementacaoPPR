@@ -2,8 +2,9 @@ package dados;
 
 import java.util.*;
 import dados.*;
+import java.io.Serializable;
 
-public class Materia {
+public class Materia implements Serializable {
     private int id;
     private String nome;
     private List<Aluno> lista_alunos;

@@ -4,12 +4,32 @@ import negocio.*;
 import dados.*;
 import java.util.*;
 
+import java.io.*;
+
 public class main {
     static Scanner sc = new Scanner(System.in);
     public static SistemaMonitoria sistema = new SistemaMonitoria();
     
     public static void main(String[] args) {
         int opcao = 0;
+
+        Materia m = new Materia();
+        sistema.AdicionaMateria(m);
+
+        sistema.inicializarDados();
+        System.out.println(m.getId());
+        System.out.println(m.getNome());
+        for(Materia m1: sistema.getListaMateria()){
+            System.out.println(m1.getId());
+            System.out.println(m1.getNome());
+        }
+        /*
+        MIGUEL: Bug interessante com a serialização
+                quando escrevo os dados que foram lidos de um arquivo, aparentemente
+                está escrevendo null no arquivo
+                Será que isso é pq eu estou criando um objeto da classe com o construtor vazio ?
+        */
+
         do{
             opcao = menu();
 
@@ -50,6 +70,8 @@ public class main {
                         break;
                 }
             } while(opcao != -1);
+
+            sistema.salvarDados();
             
         }
    

@@ -8,6 +8,10 @@ public class Resposta {
         return resposta;
     }
 
+    public Resposta(){
+
+    }
+
     public Resposta(String resposta) {
         this.resposta = resposta;
     }

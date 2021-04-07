@@ -1,8 +1,13 @@
 package dados;
 
+import java.io.Serializable;
 
-public class Post {
+public class Post implements Serializable {
     private String pergunta;
+
+    public Post(){
+
+    }
 
     public Post(String pergunta) {
         this.pergunta = pergunta;

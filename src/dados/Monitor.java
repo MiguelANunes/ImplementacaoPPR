@@ -1,9 +1,10 @@
 package dados;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Monitor extends Pessoa {
+public class Monitor extends Pessoa implements Serializable {
     private float score; 
     private List<Avaliacao> listaAvaliacao = new ArrayList();
     private int avaliacaoCount=0;
