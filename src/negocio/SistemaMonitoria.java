@@ -10,7 +10,7 @@ public class SistemaMonitoria {
 	private List<Monitor> listaMonitor = new ArrayList();
 	private List<Post> listaPost = new ArrayList();
 	private List<Resposta> listaResposta = new ArrayList();
-	private int alunoCount=0,professorCount=0,materiaCount=0,monitorCount=0,postCount=0,respostaCount=0,avaliacaoCount=0;
+	private int alunoCount=0,professorCount=0,materiaCount=0,monitorCount=0,postCount=0,respostaCount=0;
 	
 	
 	public void AdicionaAluno(Aluno a) {
@@ -101,5 +101,29 @@ public class SistemaMonitoria {
     public List<Resposta> consultaResposta(){
         List<Resposta> listaRetorno = new ArrayList(listaResposta);
         return listaRetorno;
+    }
+    public void removeAluno(Aluno a){
+        listaAluno.remove(a);
+        alunoCount--;
+    }
+    public void removeProfessor(Professor p){
+        listaProfessor.remove(p);
+        professorCount--;
+    }
+    public void removeMonitor(Monitor m){
+        listaMonitor.remove(m);
+        monitorCount--;
+    }
+    public void removeMateria(Materia m){
+        listaMateria.remove(m);
+        materiaCount--;
+    }
+    public void removePost(Post p){
+        listaPost.remove(p);
+        postCount--;
+    }
+    public void removeResposta(Resposta r){
+        listaResposta.remove(r);
+        respostaCount--;
     }
 }
