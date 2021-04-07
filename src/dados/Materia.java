@@ -26,18 +26,22 @@ public class Materia implements Serializable {
         this.listaDiscussao = listaDiscussao;
         this.lista_monitores = lista_monitores;
     }
+  
     public void AdicionaDiscussao(Discussao d) {
 		listaDiscussao.add(d);
 		discCount++;
 	}
+  
     public void removeDiscussao(Discussao d){
         listaDiscussao.remove(d);
         discCount--;
     }
+  
     public List<Discussao> consultaDiscussao(){
         List<Discussao> listaRetorno = new ArrayList(listaDiscussao);
         return listaRetorno;
     }
+  
     public int getId() {
         return id;
     }

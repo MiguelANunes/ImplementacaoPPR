@@ -2,22 +2,22 @@
 
 ## To do:
 
-- [ ] Apresentação
-- [ ] Relatório de Avaliação
+- [ ] Apresentação // Quase terminada. Necessidade de implementar menus diferentes para InstanceOf diferentes (alunos/professores/monitores).
+- [ ] Relatório de Avaliação // Não vai ser feito, pois não há maneira prática de implementar Professor.criaRelatorioMonitor() se não há ligação entre professor e monitor.
 - Código:
 	* Classes:
-		* [ ] Matéria
+		* [x] Matéria
 			* 
-		* [ ] Aluno
+		* [x] Aluno
 			* Falta: login/logout, criar/editarDiscussão, avaliarMonitor
-		* [ ] Professor
-		* [ ] Monitor
-		* [ ] Avaliação
+		* [x] Professor
+		* [x] Monitor // Acho que está tudo feito?
+		* [ ] Avaliação // Acho que nada foi feito desses últimos 4 ainda.
 		* [ ] Discussão
 		* [ ] Resposta
 		* [ ] Post
-	* [ ] Algo mais ?
-	* [ ] Interface ?
+	* [ ] Algo mais ? // Precisamos arrumar a serialização de dados sem path direto da máquina, pois são diferentes em Linux e Windows.
+	* [ ] Interface ? // nem fodeno
 	* [ ] Testes
 
 ## Done:
