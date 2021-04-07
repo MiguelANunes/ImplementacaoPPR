@@ -12,12 +12,7 @@ public class Materia {
     private List<Monitor> lista_monitores;
     
     public Materia(){ // construtor vazio, para poder chamar na main
-        this.id = id;
-        this.nome = nome;
-        this.lista_alunos = lista_alunos;
-        this.lista_professores = lista_professores;
-        this.lista_discussoes = lista_discussoes;
-        this.lista_monitores = lista_monitores;
+
     }
     
     public Materia(int id, String nome, List<Aluno> lista_alunos, List<Professor> lista_professores,
@@ -100,7 +95,7 @@ public class Materia {
         // estamos alterando a assinatura do método comparado ao que estava no projeto
         for (Discussao D : this.lista_discussoes){
             if (D.getID() == alvo.getID()){
-                D.setListaPosts(D.getListaPosts().add(novopost));
+              //  D.setListaPosts(D.getListaPosts().add(novopost));
                 
             }
         }

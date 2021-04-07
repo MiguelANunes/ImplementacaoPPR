@@ -92,7 +92,7 @@ public class main {
         materia.setLista_discussoes(lista_discussoes);
         ArrayList<Monitor> lista_monitores = new ArrayList<Monitor>();
         materia.setLista_monitores(lista_monitores);
-        SistemaMonitoria.adicionaMateria(materia); // criar funcao no sistema
+        sistema.AdicionaMateria(materia); // criar funcao no sistema
     }
     
     public static void excluiMateria(){
@@ -119,6 +119,33 @@ public class main {
         a.setCpf(sc.nextLine());
         System.out.println("Qual a senha desejada para login?");
         a.setSenha(sc.nextLine());
+        sistema.AdicionaAluno(a);
+    }
+    
+    public static void criaMonitor(){
+        Scanner sc = new Scanner(System.in);
+        Monitor m = new Monitor();
+        System.out.println("Qual o nome do Monitor?");
+        m.setNome(sc.nextLine());
+        System.out.println("Qual o CPF do Monitor?");
+        m.setCpf(sc.nextLine());
+        System.out.println("Qual a senha desejada para login?");
+        m.setSenha(sc.nextLine());
+        
+        sistema.AdicionaMonitor(m);
+    }
+    
+    public static void criaProfessor(){
+        Scanner sc = new Scanner(System.in);
+        Professor p = new Professor();
+        System.out.println("Qual o nome do Professor?");
+        p.setNome(sc.nextLine());
+        System.out.println("Qual o CPF do Professor?");
+        p.setCpf(sc.nextLine());
+        System.out.println("Qual a senha desejada para login?");
+        p.setSenha(sc.nextLine());
+        
+        sistema.AdicionaProfessor(p);
     }
     
     
