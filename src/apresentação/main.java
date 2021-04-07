@@ -13,14 +13,14 @@ public class main {
     public static void main(String[] args) {
         int opcao = 0;
 
-        Materia m = new Materia();
-        sistema.AdicionaMateria(m); // não é muito necessário por enquanto, gera confusão desnecessária
+        // Materia m = new Materia();
+        // sistema.AdicionaMateria(m); // não é muito necessário por enquanto, gera confusão desnecessária
 
         sistema.inicializarDados();
-        for(Materia m1: sistema.getListaMateria()){
-            System.out.println(m1.getId());
-            System.out.println(m1.getNome());
-        }
+        // for(Materia m1: sistema.getListaMateria()){
+        //     System.out.println(m1.getId());
+        //     System.out.println(m1.getNome());
+        // }
 
         do{
             opcao = menu();
@@ -61,7 +61,6 @@ public class main {
             
         }
    
-    
     private static int menu(){ 
                 
         System.out.println("");
@@ -80,8 +79,6 @@ public class main {
      
         return sc.nextInt();
     }
-    
-    
     
     public static void criaMateria(){
         Materia materia = new Materia();

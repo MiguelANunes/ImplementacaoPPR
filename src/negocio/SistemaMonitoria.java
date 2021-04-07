@@ -154,8 +154,13 @@ public class SistemaMonitoria {
 
         try{
             String currentpath = System.getProperty("user.dir");
-            InputStream arquivoMateria        = new FileInputStream(currentpath + "/src/armazenamento/Materia.txt");
-            ObjectInputStream leitorMateria   = new ObjectInputStream (arquivoMateria);
+
+            if(currentpath.contains("src")){ // caso "src" esteja no path do projeto, é removido, pois isso já está no
+                currentpath = currentpath.substring(0, currentpath.length()-3);// path do arquivo a ser aberto
+            }
+
+            InputStream arquivoMateria      = new FileInputStream(currentpath + "/src/armazenamento/Materia.txt");
+            ObjectInputStream leitorMateria = new ObjectInputStream (arquivoMateria);
             try {
                 while(true){
                     Materia m = new Materia();
@@ -179,7 +184,7 @@ public class SistemaMonitoria {
                 leitorMateria.close();
             }
 
-            InputStream arquivoAluno      = new FileInputStream(".//armazenamento//Aluno.txt");
+            InputStream arquivoAluno      = new FileInputStream(currentpath + "/src/armazenamento/Aluno.txt");
             ObjectInputStream leitorAluno = new ObjectInputStream (arquivoAluno);
 
             try {
@@ -205,7 +210,7 @@ public class SistemaMonitoria {
                 leitorAluno.close();
             }
 
-            InputStream arquivoProfessor      = new FileInputStream(".//armazenamento//Professor.txt");
+            InputStream arquivoProfessor      = new FileInputStream(currentpath + "/src/armazenamento/Professor.txt");
             ObjectInputStream leitorProfessor = new ObjectInputStream (arquivoProfessor);
 
             try {
@@ -231,7 +236,7 @@ public class SistemaMonitoria {
                 leitorProfessor.close();
             }
 
-            InputStream arquivoMonitor      = new FileInputStream(".//armazenamento//Monitor.txt");
+            InputStream arquivoMonitor      = new FileInputStream(currentpath + "/src/armazenamento/Monitor.txt");
             ObjectInputStream leitorMonitor = new ObjectInputStream (arquivoMonitor);
 
             try {
@@ -311,7 +316,7 @@ public class SistemaMonitoria {
             */
             
         }catch (IOException e){
-            System.out.println("Erro ao salvar dados !");
+            System.out.println("Erro ao ler dados !");
             e.printStackTrace();
         }
 
@@ -320,7 +325,7 @@ public class SistemaMonitoria {
     public void salvarDados(){ // salvar nos arquivos ao terminar o programa
 
         try{
-            OutputStream arquivoMateria        = new FileOutputStream(".//armazenamento//Materia.txt");
+            OutputStream arquivoMateria        = new FileOutputStream(currentpath + "/src/armazenamento/Materia.txt");
             ObjectOutputStream escritorMateria = new ObjectOutputStream (arquivoMateria);
 
             for (Materia M: listaMateria)
@@ -328,7 +333,7 @@ public class SistemaMonitoria {
             
             escritorMateria.close();
 
-            OutputStream arquivoAluno        = new FileOutputStream(".//armazenamento//Aluno.txt");
+            OutputStream arquivoAluno        = new FileOutputStream(currentpath + "/src/armazenamento/Aluno.txt");
             ObjectOutputStream escritorAluno = new ObjectOutputStream (arquivoAluno);
 
             for(Aluno A: listaAluno)
@@ -336,7 +341,7 @@ public class SistemaMonitoria {
             
             escritorAluno.close();
 
-            OutputStream arquivoProfessor        = new FileOutputStream(".//armazenamento//Professor.txt");
+            OutputStream arquivoProfessor        = new FileOutputStream(currentpath + "/src/armazenamento/Professor.txt");
             ObjectOutputStream escritorProfessor = new ObjectOutputStream (arquivoProfessor);
 
             for(Professor P: listaProfessor)
@@ -344,7 +349,7 @@ public class SistemaMonitoria {
             
                 escritorProfessor.close();
 
-            OutputStream arquivoMonitor        = new FileOutputStream(".//armazenamento//Monitor.txt");
+            OutputStream arquivoMonitor        = new FileOutputStream(currentpath + "/src/armazenamento/Monitor.txt");
             ObjectOutputStream escritorMonitor = new ObjectOutputStream (arquivoMonitor);
 
             for(Monitor M: listaMonitor)
