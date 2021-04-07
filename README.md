@@ -7,7 +7,6 @@
 - Código:
 	* Classes:
 		* [x] Matéria
-			* 
 		* [x] Aluno
 			* Falta: login/logout, criar/editarDiscussão, avaliarMonitor
 		* [x] Professor
@@ -16,10 +15,10 @@
 		* [ ] Discussão
 		* [ ] Resposta
 		* [ ] Post
-	* [ ] Algo mais ? // Precisamos arrumar a serialização de dados sem path direto da máquina, pois são diferentes em Linux e Windows.
-	* [ ] Interface ? // nem fodeno
+	* [ ] Algo mais ? 
 	* [ ] Testes
 
 ## Done:
 
 - [X] Ler o Projeto
+- [X] Serialização
