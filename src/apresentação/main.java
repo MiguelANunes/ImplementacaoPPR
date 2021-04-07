@@ -5,7 +5,7 @@ import dados.*;
 import java.util.*;
 
 public class main {
-
+    static Scanner sc = new Scanner(System.in);
     public static SistemaMonitoria sistema = new SistemaMonitoria();
     
     public static void main(String[] args) {
@@ -21,7 +21,8 @@ public class main {
                         excluiMateria();
                         break;
                     case 3:
-                        editaMateria(); // criar função "mostraMateria();" dentro disso aqui
+                        Materia m = mostraMaterias();
+                        editaMateria(m); 
                         break;
                     case 4:
                         criaAluno();
@@ -54,8 +55,7 @@ public class main {
    
     
     private static int menu(){ 
-        Scanner sc = new Scanner(System.in);
-        
+                
         System.out.println("");
         System.out.println("Informe o número da opção que desejas executar: ");
         System.out.println("1 - Adicionar Materia");
@@ -99,19 +99,30 @@ public class main {
         
     }
     
-    public static void editaMateria(){
-        mostraMaterias();
+    public static void editaMateria(Materia m){
+        sc.nextLine();
+        System.out.println("Qual o novo nome que deseja para a materia?");
+        m.setNome(sc.nextLine());
+        System.out.println("Alteracao Concluida!");
+        
         // mágica pra editar a materia depois de escolher;
-
+    
     }
     
-    public static void mostraMaterias(){
-        // mostrar todas as materias e talz
+    public static Materia mostraMaterias(){
+        int opcao;
+        List<Materia> listaMaterias = new ArrayList();
+        listaMaterias = sistema.getListaMateria();
+        System.out.println("Qual materia gostaria de consultar?");
+        for (int i=0; i<listaMaterias.size(); i++){
+            System.out.println(+i+": "+ listaMaterias.get(i).getNome()+" ID: "+listaMaterias.get(i).getId());
+        }
+        opcao = sc.nextInt();
+        return listaMaterias.get(opcao);
     }
     
     public static void criaAluno(){
         Aluno a = new Aluno();
-        Scanner sc = new Scanner(System.in);
         
         System.out.println("Qual o nome do Aluno?");
         a.setNome(sc.nextLine());
@@ -123,7 +134,7 @@ public class main {
     }
     
     public static void criaMonitor(){
-        Scanner sc = new Scanner(System.in);
+        
         Monitor m = new Monitor();
         System.out.println("Qual o nome do Monitor?");
         m.setNome(sc.nextLine());
