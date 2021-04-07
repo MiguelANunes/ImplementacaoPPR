@@ -1,25 +1,25 @@
 package dados;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Monitor {
-    private String nome, cpf;
-    private Materia materia;
-    private float totalscore=0,score; 
+public class Monitor extends Pessoa implements Serializable {
+    private float score;     
     private List<Avaliacao> listaAvaliacao = new ArrayList();
     private int avaliacaoCount=0;
     
 
-    public Monitor(String nome, String cpf, Materia materia, float score, List<Avaliacao> avaliacao) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.materia = materia;
+    public Monitor(String nome, String cpf, String senha, Materia materia, float score) {
+        super(nome,cpf,senha);
         this.score = score;
-        this.listaAvaliacao = avaliacao;
+    }
+  
+    public Monitor(){
+    
     }
 
-    public void AdicionaAvaliacao(Avaliacao a) {
+  public void AdicionaAvaliacao(Avaliacao a) {
 		listaAvaliacao.add(a);
 		avaliacaoCount++;
 		totalscore = totalscore+= a.getRanking();

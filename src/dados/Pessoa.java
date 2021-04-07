@@ -1,6 +1,8 @@
 package dados;
 
-public class Pessoa {
+import java.io.Serializable;
+
+public class Pessoa  implements Serializable{
     public String nome, cpf, senha;
 
     public Pessoa(String nome, String cpf, String senha) {

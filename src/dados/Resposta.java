@@ -3,9 +3,14 @@ package dados;
 
 public class Resposta {
     private String resposta;
+    
 
     public String getResposta() {
         return resposta;
+    }
+
+    public Resposta(){
+
     }
 
     public Resposta(String resposta) {
@@ -20,7 +25,5 @@ public class Resposta {
     public String toString() {
         return "Resposta: " + this.resposta + ".";
     }
-    
-     
     
 }

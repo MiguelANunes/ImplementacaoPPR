@@ -2,29 +2,42 @@ package dados;
 
 import java.util.*;
 import dados.*;
+import java.io.Serializable;
 
-public class Materia {
+public class Materia implements Serializable {
     private int id;
     private String nome;
     private List<Aluno> lista_alunos;
     private List<Professor> lista_professores;
-    private List<Discussao> lista_discussoes;
     private List<Monitor> lista_monitores;
-    
+    private List<Discussao> listaDiscussao = new ArrayList();
+    private int discCount=0;
+  
     public Materia(){ // construtor vazio, para poder chamar na main
 
     }
     
     public Materia(int id, String nome, List<Aluno> lista_alunos, List<Professor> lista_professores,
-            List<Discussao> lista_discussoes, List<Monitor> lista_monitores) {
+            List<Discussao> listaDiscussao, List<Monitor> lista_monitores) {
         this.id = id;
         this.nome = nome;
         this.lista_alunos = lista_alunos;
         this.lista_professores = lista_professores;
-        this.lista_discussoes = lista_discussoes;
+        this.listaDiscussao = listaDiscussao;
         this.lista_monitores = lista_monitores;
     }
-
+    public void AdicionaDiscussao(Discussao d) {
+		listaDiscussao.add(d);
+		discCount++;
+	}
+    public void removeDiscussao(Discussao d){
+        listaDiscussao.remove(d);
+        discCount--;
+    }
+    public List<Discussao> consultaDiscussao(){
+        List<Discussao> listaRetorno = new ArrayList(listaDiscussao);
+        return listaRetorno;
+    }
     public int getId() {
         return id;
     }
@@ -88,11 +101,11 @@ public class Materia {
     }
 
     public void adicionarPost(Post novopost, Discussao alvo){
-        // entendo que o que esse método deveria fazer é adicionar um post na discussão da matéria
-        // mas, da maneira que foi definido no projeto, não há nenhum relacionamento entre discussão e 
-        // post, logo, não tem como adicionar um post há uma discussão
+        // entendo que o que esse m�todo deveria fazer � adicionar um post na discuss�o da mat�ria
+        // mas, da maneira que foi definido no projeto, n�o h� nenhum relacionamento entre discuss�o e 
+        // post, logo, n�o tem como adicionar um post h� uma discuss�o
 
-        // estamos alterando a assinatura do método comparado ao que estava no projeto
+        // estamos alterando a assinatura do m�todo comparado ao que estava no projeto
         for (Discussao D : this.lista_discussoes){
             if (D.getID() == alvo.getID()){
               //  D.setListaPosts(D.getListaPosts().add(novopost));
@@ -102,4 +115,3 @@ public class Materia {
     }
 
     
-}
