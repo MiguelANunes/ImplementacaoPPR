@@ -26,18 +26,22 @@ public class Materia implements Serializable {
         this.listaDiscussao = listaDiscussao;
         this.lista_monitores = lista_monitores;
     }
+  
     public void AdicionaDiscussao(Discussao d) {
 		listaDiscussao.add(d);
 		discCount++;
 	}
+  
     public void removeDiscussao(Discussao d){
         listaDiscussao.remove(d);
         discCount--;
     }
+  
     public List<Discussao> consultaDiscussao(){
         List<Discussao> listaRetorno = new ArrayList(listaDiscussao);
         return listaRetorno;
     }
+  
     public int getId() {
         return id;
     }
@@ -82,13 +86,13 @@ public class Materia implements Serializable {
         return listaDiscussao;
     }
 
-    public void setLista_discussoes(List<Discussao> listaDiscussao) {
-        this.listaDiscussao = listaDiscussao;
+    public void setLista_discussoes(List<Discussao> lista_discussoes) {
+        this.listaDiscussao = lista_discussoes;
     }
     
     @Override
     public String toString() {
-        return "Materia [id=" + id + ", lista_alunos=" + lista_alunos + ", listaDiscussao=" + listaDiscussao
+        return "Materia [id=" + id + ", lista_alunos=" + lista_alunos + ", lista_discussoes=" + listaDiscussao
                 + ", lista_professores=" + lista_professores + ", nome=" + nome + ", lista_monitores=" + lista_monitores + "]";
     }
     

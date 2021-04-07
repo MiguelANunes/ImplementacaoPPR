@@ -150,13 +150,12 @@ public class SistemaMonitoria {
         respostaCount--;
     }
 
-    public void inicializarDados(){ // ler dos arquivos ao iniciar o programa
+    public void inicializarDados(){
 
         try{
-
-            InputStream arquivoMateria      = new FileInputStream(".//armazenamento//Materia.txt");
-            ObjectInputStream leitorMateria = new ObjectInputStream (arquivoMateria);
-
+            String currentpath = System.getProperty("user.dir");
+            InputStream arquivoMateria        = new FileInputStream(currentpath + "/src/armazenamento/Materia.txt");
+            ObjectInputStream leitorMateria   = new ObjectInputStream (arquivoMateria);
             try {
                 while(true){
                     Materia m = new Materia();
