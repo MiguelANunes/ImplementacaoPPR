@@ -2,12 +2,13 @@ package dados;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 import dados.*;
 
-public class Discussao {
+public class Discussao implements Serializable {
     private int id; 
     private String titulo, conteudo;
-    private List<Post> listaPosts; // alteração com relação ao diagrama
+    private List<Post> listaPosts; // alteraï¿½ï¿½o com relaï¿½ï¿½o ao diagrama
     private Aluno autor;
     private List<Post> listaPost = new ArrayList();
     private int postCount=0;
@@ -16,7 +17,7 @@ public class Discussao {
         this.id = id;
         this.titulo = titulo;
         this.conteudo = conteudo;
-        this.listaPosts = (List<Post>) listaPosts;
+        this.listaPosts = (ArrayList<Post>) listaPosts;
         this.autor = autor;
     }
     
@@ -73,3 +74,4 @@ public class Discussao {
                 + "]";
     }
 }
+
