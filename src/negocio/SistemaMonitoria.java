@@ -153,9 +153,7 @@ public class SistemaMonitoria {
     public void inicializarDados(){ // ler dos arquivos ao iniciar o programa
 
         try{
-            // ver /home/miguel/Documentos/Udesc/Matérias/PPR/Implementação/Antigos/Projetos/TesteIO/src/Principal.java
 
-            // verificar se os arquivos já existem é completamente inútil, ele sempre existirão
             InputStream arquivoMateria        = new FileInputStream(".//armazenamento//Materia.txt");
             ObjectInputStream leitorMateria   = new ObjectInputStream (arquivoMateria);
 
@@ -163,7 +161,12 @@ public class SistemaMonitoria {
                 while(true){
                     Materia m = new Materia();
                     m = (Materia) leitorMateria.readObject();
-                    AdicionaMateria(m);
+
+                    if(m.getNome() == null){
+                        continue;
+                    }else{
+                        AdicionaMateria(m);
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -185,7 +188,12 @@ public class SistemaMonitoria {
                 while(true){
                     Aluno a = new Aluno();
                     a = (Aluno) leitorAluno.readObject();
-                    AdicionaAluno(a);
+
+                    if(a.getNome() == null){
+                        continue;
+                    }else{
+                        AdicionaAluno(a);
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -206,7 +214,12 @@ public class SistemaMonitoria {
                 while(true){
                     Professor p = new Professor();
                     p = (Professor) leitorProfessor.readObject();
-                    AdicionaProfessor(p);
+
+                    if(p.getNome() == null){
+                        continue;
+                    }else{
+                        AdicionaProfessor(p);
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -227,7 +240,12 @@ public class SistemaMonitoria {
                 while(true){
                     Monitor m = new Monitor();
                     m = (Monitor) leitorMonitor.readObject();
-                    AdicionaMonitor(m);
+
+                    if(m.getNome() == null){
+                        continue;
+                    }else{
+                        AdicionaMonitor(m);
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -256,7 +274,12 @@ public class SistemaMonitoria {
                 while(true){
                     Resposta r = new Resposta();
                     r = (Resposta) leitorResposta.readObject();
-                    AdicionaResposta(r);
+
+                    if(r.getResposta() == null){
+                        continue;
+                    }else{
+                        AdicionaResposta(r);
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -277,7 +300,12 @@ public class SistemaMonitoria {
                 while(true){
                     Post p = new Post();
                     p = (Post) leitorPost.readObject();
-                    AdicionaPost(p);
+
+                    if(p.getPergunta() == null){
+                        continue;
+                    }else{
+                        AdicionaPost(p);
+                    }
                 }                
             } catch (EOFException e) {
                 

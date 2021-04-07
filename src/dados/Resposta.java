@@ -5,16 +5,13 @@ public class Resposta {
     private String resposta;
     
 
+    
+    public Resposta(){
+        
+    }
+    
     public String getResposta() {
         return resposta;
-    }
-
-    public Resposta(){
-
-    }
-
-    public Resposta(String resposta) {
-        this.resposta = resposta;
     }
 
     public void setResposta(String resposta) {
