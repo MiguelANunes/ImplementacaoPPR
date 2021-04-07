@@ -154,8 +154,8 @@ public class SistemaMonitoria {
 
         try{
 
-            InputStream arquivoMateria        = new FileInputStream(".//armazenamento//Materia.txt");
-            ObjectInputStream leitorMateria   = new ObjectInputStream (arquivoMateria);
+            InputStream arquivoMateria      = new FileInputStream(".//armazenamento//Materia.txt");
+            ObjectInputStream leitorMateria = new ObjectInputStream (arquivoMateria);
 
             try {
                 while(true){
@@ -180,8 +180,8 @@ public class SistemaMonitoria {
                 leitorMateria.close();
             }
 
-            InputStream arquivoAluno          = new FileInputStream(".//armazenamento//Aluno.txt");
-            ObjectInputStream leitorAluno     = new ObjectInputStream (arquivoAluno);
+            InputStream arquivoAluno      = new FileInputStream(".//armazenamento//Aluno.txt");
+            ObjectInputStream leitorAluno = new ObjectInputStream (arquivoAluno);
 
             try {
                 while(true){
@@ -232,8 +232,8 @@ public class SistemaMonitoria {
                 leitorProfessor.close();
             }
 
-            InputStream arquivoMonitor        = new FileInputStream(".//armazenamento//Monitor.txt");
-            ObjectInputStream leitorMonitor   = new ObjectInputStream (arquivoMonitor);
+            InputStream arquivoMonitor      = new FileInputStream(".//armazenamento//Monitor.txt");
+            ObjectInputStream leitorMonitor = new ObjectInputStream (arquivoMonitor);
 
             try {
                 while(true){
@@ -257,62 +257,62 @@ public class SistemaMonitoria {
             }finally{
                 leitorMonitor.close();
             }
+            /*
+            InputStream arquivoResposta       = new FileInputStream(".//armazenamento//Resposta.txt");
+            ObjectInputStream leitorResposta  = new ObjectInputStream (arquivoResposta);
 
-            // InputStream arquivoResposta       = new FileInputStream(".//armazenamento//Resposta.txt");
-            // ObjectInputStream leitorResposta  = new ObjectInputStream (arquivoResposta);
+            try {
+                while(true){
+                    Resposta r = new Resposta();
+                    r = (Resposta) leitorResposta.readObject();
 
-            // try {
-            //     while(true){
-            //         Resposta r = new Resposta();
-            //         r = (Resposta) leitorResposta.readObject();
-
-            //         if(r.getResposta() != null && !(r.getResposta().isEmpty())){
-            //             AdicionaResposta(r);
-            //         }else{
-            //             continue;
-            //         }
-            //     }                
-            // } catch (EOFException e) {
+                    if(r.getResposta() != null && !(r.getResposta().isEmpty())){
+                        AdicionaResposta(r);
+                    }else{
+                        continue;
+                    }
+                }                
+            } catch (EOFException e) {
                 
-            // }catch (IOException e) {
-            //     System.out.println("Problema ao Ler dados");
-            //     e.printStackTrace();
-            // } catch (ClassNotFoundException e1) {
-            //     System.out.println("Problema ao Ler dados");
-            //     e1.printStackTrace();
-            // }finally{
-            //     leitorResposta.close();
-            // }
+            }catch (IOException e) {
+                System.out.println("Problema ao Ler dados");
+                e.printStackTrace();
+            } catch (ClassNotFoundException e1) {
+                System.out.println("Problema ao Ler dados");
+                e1.printStackTrace();
+            }finally{
+                leitorResposta.close();
+            }
 
-            // InputStream arquivoPost      = new FileInputStream(".//armazenamento//Post.txt");
-            // ObjectInputStream leitorPost = new ObjectInputStream (arquivoPost);
+            InputStream arquivoPost      = new FileInputStream(".//armazenamento//Post.txt");
+            ObjectInputStream leitorPost = new ObjectInputStream (arquivoPost);
 
-            // try {
-            //     while(true){
-            //         Post p = new Post();
-            //         p = (Post) leitorPost.readObject();
+            try {
+                while(true){
+                    Post p = new Post();
+                    p = (Post) leitorPost.readObject();
 
-            //         if(p.getPergunta() != null && !(p.getPergunta().isEmpty())){
-            //             AdicionaPost(p);
-            //         }else{
-            //             continue;
-            //         }
-            //     }                
-            // } catch (EOFException e) {
+                    if(p.getPergunta() != null && !(p.getPergunta().isEmpty())){
+                        AdicionaPost(p);
+                    }else{
+                        continue;
+                    }
+                }                
+            } catch (EOFException e) {
                 
-            // }catch (IOException e) {
-            //     System.out.println("Problema ao Ler dados");
-            //     e.printStackTrace();
-            // } catch (ClassNotFoundException e1) {
-            //     System.out.println("Problema ao Ler dados");
-            //     e1.printStackTrace();
-            // }finally{
-            //     leitorPost.close();
-            // }
-
+            }catch (IOException e) {
+                System.out.println("Problema ao Ler dados");
+                e.printStackTrace();
+            } catch (ClassNotFoundException e1) {
+                System.out.println("Problema ao Ler dados");
+                e1.printStackTrace();
+            }finally{
+                leitorPost.close();
+            }
+            */
             
-        }catch (IOException e){ // deixar IOException dava erro de compilação aqui, mas isso foi antes de fazer escrita
-            System.out.println("Erro ao salvar dados !"); // mudar de volta para isso para testar
+        }catch (IOException e){
+            System.out.println("Erro ao salvar dados !");
             e.printStackTrace();
         }
 
@@ -321,19 +321,16 @@ public class SistemaMonitoria {
     public void salvarDados(){ // salvar nos arquivos ao terminar o programa
 
         try{
-            // ver /home/miguel/Documentos/Udesc/Matérias/PPR/Implementação/Antigos/Projetos/TesteIO/src/Principal.java
-
-            // verificar se os arquivos já existem é completamente inútil, ele sempre existirão
-            OutputStream arquivoMateria          = new FileOutputStream(".//armazenamento//Materia.txt");
-            ObjectOutputStream escritorMateria   = new ObjectOutputStream (arquivoMateria);
+            OutputStream arquivoMateria        = new FileOutputStream(".//armazenamento//Materia.txt");
+            ObjectOutputStream escritorMateria = new ObjectOutputStream (arquivoMateria);
 
             for (Materia M: listaMateria)
                 escritorMateria.writeObject(M);
             
             escritorMateria.close();
 
-            OutputStream arquivoAluno            = new FileOutputStream(".//armazenamento//Aluno.txt");
-            ObjectOutputStream escritorAluno     = new ObjectOutputStream (arquivoAluno);
+            OutputStream arquivoAluno        = new FileOutputStream(".//armazenamento//Aluno.txt");
+            ObjectOutputStream escritorAluno = new ObjectOutputStream (arquivoAluno);
 
             for(Aluno A: listaAluno)
                 escritorAluno.writeObject(A);
@@ -348,41 +345,43 @@ public class SistemaMonitoria {
             
                 escritorProfessor.close();
 
-            OutputStream arquivoMonitor          = new FileOutputStream(".//armazenamento//Monitor.txt");
-            ObjectOutputStream escritorMonitor   = new ObjectOutputStream (arquivoMonitor);
+            OutputStream arquivoMonitor        = new FileOutputStream(".//armazenamento//Monitor.txt");
+            ObjectOutputStream escritorMonitor = new ObjectOutputStream (arquivoMonitor);
 
             for(Monitor M: listaMonitor)
                 escritorMonitor.writeObject(M);
             
                 escritorMonitor.close();
 
-            // OutputStream arquivoAvaliacao        = new FileOutputStream(".//armazenamento//Avaliacao.txt");
-            // ObjectOutputStream escritorAvaliacao = new ObjectOutputStream (arquivoAvaliacao);
+            /*
+            OutputStream arquivoAvaliacao        = new FileOutputStream(".//armazenamento//Avaliacao.txt");
+            ObjectOutputStream escritorAvaliacao = new ObjectOutputStream (arquivoAvaliacao);
 
-            // for(Avaliacao A: lista)
+            for(Avaliacao A: lista)
 
-            // OutputStream arquivoDiscussao        = new FileOutputStream(".//armazenamento//Discussão.txt");
-            // ObjectOutputStream escritorDiscussao = new ObjectOutputStream (arquivoDiscussao);
+            OutputStream arquivoDiscussao        = new FileOutputStream(".//armazenamento//Discussão.txt");
+            ObjectOutputStream escritorDiscussao = new ObjectOutputStream (arquivoDiscussao);
 
-            // OutputStream arquivoResposta         = new FileOutputStream(".//armazenamento//Resposta.txt");
-            // ObjectOutputStream escritorResposta  = new ObjectOutputStream (arquivoResposta);
+            OutputStream arquivoResposta         = new FileOutputStream(".//armazenamento//Resposta.txt");
+            ObjectOutputStream escritorResposta  = new ObjectOutputStream (arquivoResposta);
 
-            // for(Resposta R: listaResposta)
-            //     escritorResposta.writeObject(R);
+            for(Resposta R: listaResposta)
+                escritorResposta.writeObject(R);
             
-            //     escritorResposta.close();
+                escritorResposta.close();
 
-            // OutputStream arquivoPost             = new FileOutputStream(".//armazenamento//Post.txt");
-            // ObjectOutputStream escritorPost      = new ObjectOutputStream (arquivoPost);
+            OutputStream arquivoPost             = new FileOutputStream(".//armazenamento//Post.txt");
+            ObjectOutputStream escritorPost      = new ObjectOutputStream (arquivoPost);
 
-            // for(Post P: listaPost)
-            //     escritorPost.writeObject(P);
+            for(Post P: listaPost)
+                escritorPost.writeObject(P);
             
-            // escritorPost.close();
+            escritorPost.close();
+            */
 
             
-        }catch (IOException e){ // deixar IOException dava erro de compilação aqui, mas isso foi antes de fazer escrita
-            System.out.println("Erro ao salvar dados !"); // mudar de volta para isso para testar
+        }catch (IOException e){ 
+            System.out.println("Erro ao salvar dados !");
             e.printStackTrace();
         }
     }
