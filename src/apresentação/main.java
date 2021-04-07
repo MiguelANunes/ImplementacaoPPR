@@ -14,62 +14,57 @@ public class main {
         int opcao = 0;
 
         Materia m = new Materia();
-        sistema.AdicionaMateria(m);
+        sistema.AdicionaMateria(m); // não é muito necessário por enquanto, gera confusão desnecessária
 
         sistema.inicializarDados();
-        System.out.println(m.getId());
-        System.out.println(m.getNome());
         for(Materia m1: sistema.getListaMateria()){
             System.out.println(m1.getId());
             System.out.println(m1.getNome());
         }
         /*
-        MIGUEL: Bug interessante com a serialização
-                quando escrevo os dados que foram lidos de um arquivo, aparentemente
-                está escrevendo null no arquivo
-                Será que isso é pq eu estou criando um objeto da classe com o construtor vazio ?
+        MIGUEL: Não precisa salvar discussão, post e resposta individualmente, pois estes são salvos dentro da matéria
         */
 
-        do{
-            opcao = menu();
+        // do{
+        //     opcao = menu();
 
-                switch(opcao){
-                    case 1:
-                        criaMateria();
-                        break;
-                    case 2:
-                        excluiMateria();
-                        break;
-                    case 3:
-                        Materia m = mostraMaterias();
-                        editaMateria(m); 
-                        break;
-                    case 4:
-                        criaAluno();
-                        break;
-                    case 5:
-                        criaMonitor();
-                        break;
-                    case 6:
-                        criaProfessor();
-                        break;
-                    case 7:
-                        AdicionarPost();
-                        break;
-                    case 8:
-                        EditarPost();
-                        break;
-                    case 9:
-                        AdicionarResposta();
-                        break;
-                    case 10:
-                        EditarResposta();
-                        break;
-                    case 11:
-                        AvaliaMonitor();
-                        break;
-                }
-            } while(opcao != -1);
+        //         switch(opcao){
+        //             case 1:
+        //                 criaMateria();
+        //                 break;
+        //             case 2:
+        //                 excluiMateria();
+        //                 break;
+        //             case 3:
+        //                 Materia m = mostraMaterias();
+        //                 editaMateria(m); 
+        //                 break;
+        //             case 4:
+        //                 criaAluno();
+        //                 break;
+        //             case 5:
+        //                 criaMonitor();
+        //                 break;
+        //             case 6:
+        //                 criaProfessor();
+        //                 break;
+        //             case 7:
+        //                 AdicionarPost();
+        //                 break;
+        //             case 8:
+        //                 EditarPost();
+        //                 break;
+        //             case 9:
+        //                 AdicionarResposta();
+        //                 break;
+        //             case 10:
+        //                 EditarResposta();
+        //                 break;
+        //             case 11:
+        //                 AvaliaMonitor();
+        //                 break;
+        //         }
+        //     } while(opcao != -1);
 
             sistema.salvarDados();
             

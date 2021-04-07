@@ -79,16 +79,16 @@ public class Materia implements Serializable {
     }
 
     public List<Discussao> getLista_discussoes() {
-        return lista_discussoes;
+        return listaDiscussao;
     }
 
-    public void setLista_discussoes(List<Discussao> lista_discussoes) {
-        this.lista_discussoes = lista_discussoes;
+    public void setLista_discussoes(List<Discussao> listaDiscussao) {
+        this.listaDiscussao = listaDiscussao;
     }
     
     @Override
     public String toString() {
-        return "Materia [id=" + id + ", lista_alunos=" + lista_alunos + ", lista_discussoes=" + lista_discussoes
+        return "Materia [id=" + id + ", lista_alunos=" + lista_alunos + ", listaDiscussao=" + listaDiscussao
                 + ", lista_professores=" + lista_professores + ", nome=" + nome + ", lista_monitores=" + lista_monitores + "]";
     }
     
@@ -106,12 +106,13 @@ public class Materia implements Serializable {
         // post, logo, n�o tem como adicionar um post h� uma discuss�o
 
         // estamos alterando a assinatura do m�todo comparado ao que estava no projeto
-        for (Discussao D : this.lista_discussoes){
+        for (Discussao D : this.listaDiscussao){
             if (D.getID() == alvo.getID()){
               //  D.setListaPosts(D.getListaPosts().add(novopost));
                 
             }
         }
     }
+}
 
     

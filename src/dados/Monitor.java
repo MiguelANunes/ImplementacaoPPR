@@ -20,11 +20,11 @@ public class Monitor extends Pessoa implements Serializable {
     }
 
   public void AdicionaAvaliacao(Avaliacao a) {
-		listaAvaliacao.add(a);
-		avaliacaoCount++;
-		totalscore = totalscore+= a.getRanking();
-		setScore(totalscore/avaliacaoCount);
-	}
+        listaAvaliacao.add(a);
+        avaliacaoCount++;
+        float totalscore = score+= a.getRanking();
+        setScore(totalscore/avaliacaoCount);
+    }
     public void removeAvaliacao(Avaliacao a){
         listaAvaliacao.remove(a);
         avaliacaoCount--;
@@ -33,16 +33,12 @@ public class Monitor extends Pessoa implements Serializable {
         List<Avaliacao> listaRetorno = new ArrayList(listaAvaliacao);
         return listaRetorno;
     }
-	public String getNome() {
+    public String getNome() {
         return nome;
     }
 
     public String getCpf() {
         return cpf;
-    }
-
-    public Materia getMateria() {
-        return materia;
     }
 
     public float getScore() {
@@ -57,9 +53,6 @@ public class Monitor extends Pessoa implements Serializable {
         this.cpf = cpf;
     }
 
-    public void setMateria(Materia materia) {
-        this.materia = materia;
-    }
 
     public void setScore(float score) {
         this.score = score;
@@ -75,7 +68,7 @@ public class Monitor extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "Monitor{" + "nome: " + nome + ", cpf: " + cpf + ", materia: " + materia + ", score: " + score + '}';
+        return "Monitor{" + "nome: " + nome + ", cpf: " + cpf + ", materia: " + ", score: " + score + '}';
     }
 
     

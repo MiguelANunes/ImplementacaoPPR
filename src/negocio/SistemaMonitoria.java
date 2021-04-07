@@ -15,7 +15,7 @@ public class SistemaMonitoria {
 	private List<Post> listaPost = new ArrayList<>();
 	private List<Resposta> listaResposta = new ArrayList<>();
 	private int alunoCount=0,professorCount=0,materiaCount=0,monitorCount=0,postCount=0,respostaCount=0;
-	
+
 	
     public void AdicionaAluno(Aluno a) {
 		listaAluno.add(a);
@@ -161,11 +161,10 @@ public class SistemaMonitoria {
                 while(true){
                     Materia m = new Materia();
                     m = (Materia) leitorMateria.readObject();
-
-                    if(m.getNome() == null){
-                        continue;
-                    }else{
+                    if(m.getNome() != null && !(m.getNome().isEmpty())){
                         AdicionaMateria(m);
+                    }else{
+                        continue;
                     }
                 }                
             } catch (EOFException e) {
@@ -189,10 +188,10 @@ public class SistemaMonitoria {
                     Aluno a = new Aluno();
                     a = (Aluno) leitorAluno.readObject();
 
-                    if(a.getNome() == null){
-                        continue;
-                    }else{
+                    if(a.getNome() != null && !(a.getNome().isEmpty())){
                         AdicionaAluno(a);
+                    }else{
+                        continue;
                     }
                 }                
             } catch (EOFException e) {
@@ -215,10 +214,10 @@ public class SistemaMonitoria {
                     Professor p = new Professor();
                     p = (Professor) leitorProfessor.readObject();
 
-                    if(p.getNome() == null){
-                        continue;
-                    }else{
+                    if(p.getNome() != null && !(p.getNome().isEmpty())){
                         AdicionaProfessor(p);
+                    }else{
+                        continue;
                     }
                 }                
             } catch (EOFException e) {
@@ -241,10 +240,10 @@ public class SistemaMonitoria {
                     Monitor m = new Monitor();
                     m = (Monitor) leitorMonitor.readObject();
 
-                    if(m.getNome() == null){
-                        continue;
-                    }else{
+                    if(m.getNome() != null && !(m.getNome().isEmpty())){
                         AdicionaMonitor(m);
+                    }else{
+                        continue;
                     }
                 }                
             } catch (EOFException e) {
@@ -275,10 +274,10 @@ public class SistemaMonitoria {
                     Resposta r = new Resposta();
                     r = (Resposta) leitorResposta.readObject();
 
-                    if(r.getResposta() == null){
-                        continue;
-                    }else{
+                    if(r.getResposta() != null && !(r.getResposta().isEmpty())){
                         AdicionaResposta(r);
+                    }else{
+                        continue;
                     }
                 }                
             } catch (EOFException e) {
@@ -293,18 +292,18 @@ public class SistemaMonitoria {
                 leitorResposta.close();
             }
 
-            InputStream arquivoPost           = new FileInputStream(".//armazenamento//Post.txt");
-            ObjectInputStream leitorPost      = new ObjectInputStream (arquivoPost);
+            InputStream arquivoPost      = new FileInputStream(".//armazenamento//Post.txt");
+            ObjectInputStream leitorPost = new ObjectInputStream (arquivoPost);
 
             try {
                 while(true){
                     Post p = new Post();
                     p = (Post) leitorPost.readObject();
 
-                    if(p.getPergunta() == null){
-                        continue;
-                    }else{
+                    if(p.getPergunta() != null && !(p.getPergunta().isEmpty())){
                         AdicionaPost(p);
+                    }else{
+                        continue;
                     }
                 }                
             } catch (EOFException e) {
