@@ -258,65 +258,57 @@ public class SistemaMonitoria {
                 leitorMonitor.close();
             }
 
-            // InputStream arquivoAvaliacao      = new FileInputStream(".//armazenamento//Avaliacao.txt");
-            // ObjectInputStream leitorAvaliacao = new ObjectInputStream (arquivoAvaliacao);
+            // InputStream arquivoResposta       = new FileInputStream(".//armazenamento//Resposta.txt");
+            // ObjectInputStream leitorResposta  = new ObjectInputStream (arquivoResposta);
 
-            // for(Avaliacao A: lista)
+            // try {
+            //     while(true){
+            //         Resposta r = new Resposta();
+            //         r = (Resposta) leitorResposta.readObject();
 
-            // InputStream arquivoDiscussao      = new FileInputStream(".//armazenamento//Discussão.txt");
-            // ObjectInputStream leitorDiscussao = new ObjectInputStream (arquivoDiscussao);
-
-            InputStream arquivoResposta       = new FileInputStream(".//armazenamento//Resposta.txt");
-            ObjectInputStream leitorResposta  = new ObjectInputStream (arquivoResposta);
-
-            try {
-                while(true){
-                    Resposta r = new Resposta();
-                    r = (Resposta) leitorResposta.readObject();
-
-                    if(r.getResposta() != null && !(r.getResposta().isEmpty())){
-                        AdicionaResposta(r);
-                    }else{
-                        continue;
-                    }
-                }                
-            } catch (EOFException e) {
+            //         if(r.getResposta() != null && !(r.getResposta().isEmpty())){
+            //             AdicionaResposta(r);
+            //         }else{
+            //             continue;
+            //         }
+            //     }                
+            // } catch (EOFException e) {
                 
-            }catch (IOException e) {
-                System.out.println("Problema ao Ler dados");
-                e.printStackTrace();
-            } catch (ClassNotFoundException e1) {
-                System.out.println("Problema ao Ler dados");
-                e1.printStackTrace();
-            }finally{
-                leitorResposta.close();
-            }
+            // }catch (IOException e) {
+            //     System.out.println("Problema ao Ler dados");
+            //     e.printStackTrace();
+            // } catch (ClassNotFoundException e1) {
+            //     System.out.println("Problema ao Ler dados");
+            //     e1.printStackTrace();
+            // }finally{
+            //     leitorResposta.close();
+            // }
 
-            InputStream arquivoPost      = new FileInputStream(".//armazenamento//Post.txt");
-            ObjectInputStream leitorPost = new ObjectInputStream (arquivoPost);
+            // InputStream arquivoPost      = new FileInputStream(".//armazenamento//Post.txt");
+            // ObjectInputStream leitorPost = new ObjectInputStream (arquivoPost);
 
-            try {
-                while(true){
-                    Post p = new Post();
-                    p = (Post) leitorPost.readObject();
+            // try {
+            //     while(true){
+            //         Post p = new Post();
+            //         p = (Post) leitorPost.readObject();
 
-                    if(p.getPergunta() != null && !(p.getPergunta().isEmpty())){
-                        AdicionaPost(p);
-                    }else{
-                        continue;
-                    }
-                }                
-            } catch (EOFException e) {
+            //         if(p.getPergunta() != null && !(p.getPergunta().isEmpty())){
+            //             AdicionaPost(p);
+            //         }else{
+            //             continue;
+            //         }
+            //     }                
+            // } catch (EOFException e) {
                 
-            }catch (IOException e) {
-                System.out.println("Problema ao Ler dados");
-                e.printStackTrace();
-            } catch (ClassNotFoundException e1) {
-                System.out.println("Problema ao Ler dados");
-                e1.printStackTrace();
-            }finally{
-                leitorPost.close();
-            }
+            // }catch (IOException e) {
+            //     System.out.println("Problema ao Ler dados");
+            //     e.printStackTrace();
+            // } catch (ClassNotFoundException e1) {
+            //     System.out.println("Problema ao Ler dados");
+            //     e1.printStackTrace();
+            // }finally{
+            //     leitorPost.close();
+            // }
 
             
         }catch (IOException e){ // deixar IOException dava erro de compilação aqui, mas isso foi antes de fazer escrita
@@ -372,21 +364,21 @@ public class SistemaMonitoria {
             // OutputStream arquivoDiscussao        = new FileOutputStream(".//armazenamento//Discussão.txt");
             // ObjectOutputStream escritorDiscussao = new ObjectOutputStream (arquivoDiscussao);
 
-            OutputStream arquivoResposta         = new FileOutputStream(".//armazenamento//Resposta.txt");
-            ObjectOutputStream escritorResposta  = new ObjectOutputStream (arquivoResposta);
+            // OutputStream arquivoResposta         = new FileOutputStream(".//armazenamento//Resposta.txt");
+            // ObjectOutputStream escritorResposta  = new ObjectOutputStream (arquivoResposta);
 
-            for(Resposta R: listaResposta)
-                escritorResposta.writeObject(R);
+            // for(Resposta R: listaResposta)
+            //     escritorResposta.writeObject(R);
             
-                escritorResposta.close();
+            //     escritorResposta.close();
 
-            OutputStream arquivoPost             = new FileOutputStream(".//armazenamento//Post.txt");
-            ObjectOutputStream escritorPost      = new ObjectOutputStream (arquivoPost);
+            // OutputStream arquivoPost             = new FileOutputStream(".//armazenamento//Post.txt");
+            // ObjectOutputStream escritorPost      = new ObjectOutputStream (arquivoPost);
 
-            for(Post P: listaPost)
-                escritorPost.writeObject(P);
+            // for(Post P: listaPost)
+            //     escritorPost.writeObject(P);
             
-            escritorPost.close();
+            // escritorPost.close();
 
             
         }catch (IOException e){ // deixar IOException dava erro de compilação aqui, mas isso foi antes de fazer escrita

@@ -21,50 +21,47 @@ public class main {
             System.out.println(m1.getId());
             System.out.println(m1.getNome());
         }
-        /*
-        MIGUEL: Não precisa salvar discussão, post e resposta individualmente, pois estes são salvos dentro da matéria
-        */
 
-        // do{
-        //     opcao = menu();
+        do{
+            opcao = menu();
 
-        //         switch(opcao){
-        //             case 1:
-        //                 criaMateria();
-        //                 break;
-        //             case 2:
-        //                 excluiMateria();
-        //                 break;
-        //             case 3:
-        //                 Materia m = mostraMaterias();
-        //                 editaMateria(m); 
-        //                 break;
-        //             case 4:
-        //                 criaAluno();
-        //                 break;
-        //             case 5:
-        //                 criaMonitor();
-        //                 break;
-        //             case 6:
-        //                 criaProfessor();
-        //                 break;
-        //             case 7:
-        //                 AdicionarPost();
-        //                 break;
-        //             case 8:
-        //                 EditarPost();
-        //                 break;
-        //             case 9:
-        //                 AdicionarResposta();
-        //                 break;
-        //             case 10:
-        //                 EditarResposta();
-        //                 break;
-        //             case 11:
-        //                 AvaliaMonitor();
-        //                 break;
-        //         }
-        //     } while(opcao != -1);
+                switch(opcao){
+                    case 1:
+                        criaMateria();
+                        break;
+                    case 2:
+                        excluiMateria();
+                        break;
+                    case 3:
+                        Materia m = mostraMaterias();
+                        editaMateria(m); 
+                        break;
+                    case 4:
+                        criaAluno();
+                        break;
+                    case 5:
+                        criaMonitor();
+                        break;
+                    case 6:
+                        criaProfessor();
+                        break;
+                    case 7:
+                        AdicionarPost();
+                        break;
+                    case 8:
+                        EditarPost();
+                        break;
+                    case 9:
+                        AdicionarResposta();
+                        break;
+                    case 10:
+                        EditarResposta();
+                        break;
+                    case 11:
+                        AvaliaMonitor();
+                        break;
+                }
+            } while(opcao != -1);
 
             sistema.salvarDados();
             
