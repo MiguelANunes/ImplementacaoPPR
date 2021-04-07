@@ -177,8 +177,8 @@ public class SistemaMonitoria {
             finally{
                 leitorMateria.close();
             }
-
-            InputStream arquivoAluno          = new FileInputStream(".//armazenamento//Aluno.txt");
+            
+            InputStream arquivoAluno          = new FileInputStream(currentpath + "/src/armazenamento/Aluno.txt");
             ObjectInputStream leitorAluno     = new ObjectInputStream (arquivoAluno);
 
             try {
@@ -199,7 +199,7 @@ public class SistemaMonitoria {
                 leitorAluno.close();
             }
 
-            InputStream arquivoProfessor      = new FileInputStream(".//armazenamento//Professor.txt");
+            InputStream arquivoProfessor      = new FileInputStream(currentpath + "/src/armazenamento/Professor.txt");
             ObjectInputStream leitorProfessor = new ObjectInputStream (arquivoProfessor);
 
             try {
@@ -220,7 +220,7 @@ public class SistemaMonitoria {
                 leitorProfessor.close();
             }
 
-            InputStream arquivoMonitor        = new FileInputStream(".//armazenamento//Monitor.txt");
+            InputStream arquivoMonitor        = new FileInputStream(currentpath + "/src/armazenamento//Monitor.txt");
             ObjectInputStream leitorMonitor   = new ObjectInputStream (arquivoMonitor);
 
             try {
@@ -249,7 +249,7 @@ public class SistemaMonitoria {
             // InputStream arquivoDiscussao      = new FileInputStream(".//armazenamento//Discussão.txt");
             // ObjectInputStream leitorDiscussao = new ObjectInputStream (arquivoDiscussao);
 
-            InputStream arquivoResposta       = new FileInputStream(".//armazenamento//Resposta.txt");
+            InputStream arquivoResposta       = new FileInputStream(currentpath + "/src/armazenamento//Resposta.txt");
             ObjectInputStream leitorResposta  = new ObjectInputStream (arquivoResposta);
 
             try {
@@ -270,7 +270,7 @@ public class SistemaMonitoria {
                 leitorResposta.close();
             }
 
-            InputStream arquivoPost           = new FileInputStream(".//armazenamento//Post.txt");
+            InputStream arquivoPost           = new FileInputStream(currentpath + "/src/armazenamento//Post.txt");
             ObjectInputStream leitorPost      = new ObjectInputStream (arquivoPost);
 
             try {
@@ -305,7 +305,8 @@ public class SistemaMonitoria {
             // ver /home/miguel/Documentos/Udesc/Matérias/PPR/Implementação/Antigos/Projetos/TesteIO/src/Principal.java
 
             // verificar se os arquivos já existem é completamente inútil, ele sempre existirão
-            OutputStream arquivoMateria          = new FileOutputStream(".//armazenamento//Materia.txt");
+            String currentpath = System.getProperty("user.dir");
+            OutputStream arquivoMateria          = new FileOutputStream(currentpath + "/src/armazenamento/Materia.txt");
             ObjectOutputStream escritorMateria   = new ObjectOutputStream (arquivoMateria);
 
             for (Materia M: listaMateria)
@@ -313,7 +314,7 @@ public class SistemaMonitoria {
             
             escritorMateria.close();
 
-            OutputStream arquivoAluno            = new FileOutputStream(".//armazenamento//Aluno.txt");
+            OutputStream arquivoAluno            = new FileOutputStream(currentpath + "/src/armazenamento/Aluno.txt");
             ObjectOutputStream escritorAluno     = new ObjectOutputStream (arquivoAluno);
 
             for(Aluno A: listaAluno)
@@ -321,7 +322,7 @@ public class SistemaMonitoria {
             
             escritorAluno.close();
 
-            OutputStream arquivoProfessor        = new FileOutputStream(".//armazenamento//Professor.txt");
+            OutputStream arquivoProfessor        = new FileOutputStream(currentpath + "/src/armazenamento/Professor.txt");
             ObjectOutputStream escritorProfessor = new ObjectOutputStream (arquivoProfessor);
 
             for(Professor P: listaProfessor)
@@ -329,7 +330,7 @@ public class SistemaMonitoria {
             
                 escritorProfessor.close();
 
-            OutputStream arquivoMonitor          = new FileOutputStream(".//armazenamento//Monitor.txt");
+            OutputStream arquivoMonitor          = new FileOutputStream(currentpath + "/src/armazenamento/Monitor.txt");
             ObjectOutputStream escritorMonitor   = new ObjectOutputStream (arquivoMonitor);
 
             for(Monitor M: listaMonitor)
@@ -345,7 +346,7 @@ public class SistemaMonitoria {
             // OutputStream arquivoDiscussao        = new FileOutputStream(".//armazenamento//Discussão.txt");
             // ObjectOutputStream escritorDiscussao = new ObjectOutputStream (arquivoDiscussao);
 
-            OutputStream arquivoResposta         = new FileOutputStream(".//armazenamento//Resposta.txt");
+            OutputStream arquivoResposta         = new FileOutputStream(currentpath + "/src/armazenamento/Resposta.txt");
             ObjectOutputStream escritorResposta  = new ObjectOutputStream (arquivoResposta);
 
             for(Resposta R: listaResposta)
@@ -353,7 +354,7 @@ public class SistemaMonitoria {
             
                 escritorResposta.close();
 
-            OutputStream arquivoPost             = new FileOutputStream(".//armazenamento//Post.txt");
+            OutputStream arquivoPost             = new FileOutputStream(currentpath + "/src/armazenamento/Post.txt");
             ObjectOutputStream escritorPost      = new ObjectOutputStream (arquivoPost);
 
             for(Post P: listaPost)

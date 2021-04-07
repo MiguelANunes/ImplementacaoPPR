@@ -13,6 +13,10 @@ public class Discussao implements Serializable {
     private List<Post> listaPost = new ArrayList();
     private int postCount=0;
 
+    public Discussao(){
+        
+    }
+    
     public Discussao(int id, String titulo, String conteudo, List<Post> listaPosts, Aluno autor) {
         this.id = id;
         this.titulo = titulo;
