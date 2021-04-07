@@ -17,13 +17,6 @@ public class main {
         sistema.inicializarDados();
 
 
-        /*
-        MIGUEL: Bug interessante com a serialização
-                quando escrevo os dados que foram lidos de um arquivo, aparentemente
-                está escrevendo null no arquivo
-                Será que isso é pq eu estou criando um objeto da classe com o construtor vazio ?
-        */
-
         do{
             opcao = menu();
 
