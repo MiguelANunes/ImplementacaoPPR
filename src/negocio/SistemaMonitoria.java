@@ -11,7 +11,7 @@ public class SistemaMonitoria {
 	private List<Aluno> listaAluno = new ArrayList<>();
 	private List<Professor> listaProfessor = new ArrayList<>();
 	private List<Materia> listaMateria = new ArrayList<>();
-	private List<dados.Monitor> listaMonitor = new ArrayList<>();
+	private List<Monitor> listaMonitor = new ArrayList<>();
 	private List<Post> listaPost = new ArrayList<>();
 	private List<Resposta> listaResposta = new ArrayList<>();
 	private int alunoCount=0,professorCount=0,materiaCount=0,monitorCount=0,postCount=0,respostaCount=0;
@@ -156,9 +156,9 @@ public class SistemaMonitoria {
             // ver /home/miguel/Documentos/Udesc/Matérias/PPR/Implementação/Antigos/Projetos/TesteIO/src/Principal.java
 
             // verificar se os arquivos já existem é completamente inútil, ele sempre existirão
-            InputStream arquivoMateria        = new FileInputStream(".//armazenamento//Materia.txt");
+            String currentpath = System.getProperty("user.dir");
+            InputStream arquivoMateria        = new FileInputStream(currentpath + "/src/armazenamento/Materia.txt");
             ObjectInputStream leitorMateria   = new ObjectInputStream (arquivoMateria);
-
             try {
                 while(true){
                     Materia m = new Materia();
