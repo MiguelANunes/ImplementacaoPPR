@@ -1,13 +1,16 @@
 package dados;
 
+import java.util.ArrayList;
 import java.util.List;
 import dados.*;
 
 public class Discussao {
     private int id; 
     private String titulo, conteudo;
-    private List<Post> listaPosts; // alteraÃ§Ã£o com relaÃ§Ã£o ao diagrama
+    private List<Post> listaPosts; // alteração com relação ao diagrama
     private Aluno autor;
+    private List<Post> listaPost = new ArrayList();
+    private int postCount=0;
 
     public Discussao(int id, String titulo, String conteudo, List<Post> listaPosts, Aluno autor) {
         this.id = id;
@@ -15,6 +18,21 @@ public class Discussao {
         this.conteudo = conteudo;
         this.listaPosts = (List<Post>) listaPosts;
         this.autor = autor;
+    }
+    
+  
+
+    public void AdicionaPost(Post p) {
+		listaPost.add(p);
+		postCount++;
+	}
+    public void removePost(Post p){
+        listaPost.remove(p);
+        postCount--;
+    }
+    public List<Post> consultaPost(){
+        List<Post> listaRetorno = new ArrayList(listaPost);
+        return listaRetorno;
     }
 
     public int getID(){
@@ -55,5 +73,3 @@ public class Discussao {
                 + "]";
     }
 }
-
-

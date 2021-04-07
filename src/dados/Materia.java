@@ -2,7 +2,6 @@ package dados;
 
 import java.util.*;
 import dados.*;
-
 public class Materia {
     private int id;
     private String nome;
@@ -10,7 +9,8 @@ public class Materia {
     private List<Professor> lista_professores;
     private List<Discussao> lista_discussoes;
     private List<Monitor> lista_monitores;
-    
+    private List<Discussao> listaDiscussao = new ArrayList();
+    private int discCount=0;
     public Materia(){ // construtor vazio, para poder chamar na main
 
     }
@@ -24,7 +24,18 @@ public class Materia {
         this.lista_discussoes = lista_discussoes;
         this.lista_monitores = lista_monitores;
     }
-
+    public void AdicionaDiscussao(Discussao d) {
+		listaDiscussao.add(d);
+		discCount++;
+	}
+    public void removeDiscussao(Discussao d){
+        listaDiscussao.remove(d);
+        discCount--;
+    }
+    public List<Discussao> consultaDiscussao(){
+        List<Discussao> listaRetorno = new ArrayList(listaDiscussao);
+        return listaRetorno;
+    }
     public int getId() {
         return id;
     }
@@ -88,11 +99,11 @@ public class Materia {
     }
 
     public void adicionarPost(Post novopost, Discussao alvo){
-        // entendo que o que esse m√©todo deveria fazer √© adicionar um post na discuss√£o da mat√©ria
-        // mas, da maneira que foi definido no projeto, n√£o h√° nenhum relacionamento entre discuss√£o e 
-        // post, logo, n√£o tem como adicionar um post h√° uma discuss√£o
+        // entendo que o que esse mÈtodo deveria fazer È adicionar um post na discuss„o da matÈria
+        // mas, da maneira que foi definido no projeto, n„o h· nenhum relacionamento entre discuss„o e 
+        // post, logo, n„o tem como adicionar um post h· uma discuss„o
 
-        // estamos alterando a assinatura do m√©todo comparado ao que estava no projeto
+        // estamos alterando a assinatura do mÈtodo comparado ao que estava no projeto
         for (Discussao D : this.lista_discussoes){
             if (D.getID() == alvo.getID()){
               //  D.setListaPosts(D.getListaPosts().add(novopost));
