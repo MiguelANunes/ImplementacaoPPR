@@ -1,5 +1,12 @@
 package negocio;
+
 import dados.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -125,5 +132,44 @@ public class SistemaMonitoria {
     public void removeResposta(Resposta r){
         listaResposta.remove(r);
         respostaCount--;
+    }
+
+    public void inicializarDados(){ // ler dos arquivos ao iniciar o programa
+
+    }
+
+    public void salvarDados(){ // salvar nos arquivos ao terminar o programa
+
+        try{// eu não sei se essas flags são necessárias, mas ficam por agora
+
+            File arquivoMateria   = new File("Materia.txt");
+            Boolean flagMateria = arquivoMateria.createNewFile();
+
+            File arquivoAluno     = new File("Aluno.txt");
+            Boolean flagAluno = arquivoAluno.createNewFile();
+
+            File arquivoProfessor = new File("Professor.txt");
+            Boolean flagProfessor = arquivoProfessor.createNewFile();
+
+            File arquivoMonitor   = new File("Monitor.txt");
+            Boolean flagMonitor = arquivoMonitor.createNewFile();
+
+            File arquivoAvaliacao = new File("Avaliação.txt");
+            Boolean flagAvaliacao = arquivoAvaliacao.createNewFile();
+
+            File arquivoDiscussao = new File("Discussão.txt");
+            Boolean flagDiscussao = arquivoDiscussao.createNewFile();
+
+            File arquivoResposta  = new File("Resposta.txt");
+            Boolean flagResposta = arquivoResposta.createNewFile();
+
+            File arquivoPost      = new File("Post.txt");
+            Boolean flagPost = arquivoPost.createNewFile();
+
+            
+        }catch (IOException e){
+            System.out.println("Erro ao salvar dados !");
+            e.printStackTrace();
+        }
     }
 }

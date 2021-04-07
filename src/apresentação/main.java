@@ -10,6 +10,9 @@ public class main {
     
     public static void main(String[] args) {
         int opcao = 0;
+
+        sistema.inicializarDados();
+
         do{
             opcao = menu();
 
@@ -49,6 +52,8 @@ public class main {
                         break;
                 }
             } while(opcao != -1);
+
+            sistema.salvarDados();
             
         }
    
