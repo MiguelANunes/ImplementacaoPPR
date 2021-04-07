@@ -14,6 +14,10 @@ public class main {
         int opcao = 0;
         sistema.inicializarDados();
 
+        /*
+        GILSON: Bug N E R V O S O  acontecendo na linha 270 mais ou menos, quando se chama o método "Adiciona Resposta" - Case 8
+        */
+
         do{
             opcao = menu();
                 switch(opcao){
@@ -24,8 +28,8 @@ public class main {
                         excluiMateria();
                         break;
                     case 3:
-                        Materia m2 = mostraMaterias();
-                        editaMateria(m2); 
+                        Materia m = mostraMaterias();
+                        editaMateria(m); 
                         break;
                     case 4:
                         criaAluno();
@@ -40,11 +44,24 @@ public class main {
                         adicionarPost();
                         break;
                     case 8:
-                    //    adicionarResposta();
+                        adicionarResposta();
                         break;
                     case 9:
-                    //    avaliaMonitor();
+                        sc.nextLine();
+                        System.out.println("Consulta de Alunos");
+                        List<Aluno> listaConsulta1 = sistema.consultaAluno();
+                        for (Aluno a: listaConsulta1){
+                            System.out.println("Nome do Aluno: "+a.getNome());
+                            System.out.println("CPF do Aluno: "+a.getCpf());
+                            System.out.println("Senha do Aluno: "+a.getSenha());
+                        }
                         break;
+                        
+                    case 10:
+                        sc.nextLine();
+                        adicionarDiscussao();
+                        break;
+                        
                 }
             } while(opcao != -1);
             sistema.salvarDados();
@@ -62,12 +79,16 @@ public class main {
         System.out.println("6 - Adicionar Professor");
         System.out.println("7 - Adicionar Post");
         System.out.println("8 - Adicionar Resposta");
-        System.out.println("9 - Avaliar Monitor");
+        System.out.println("9 - Consultar Alunos");
+        System.out.println("10 - Adicionar Discussao");
         System.out.println("Digite -1 para sair");
         System.out.print("Sua opção: ");
      
         return sc.nextInt();
     }
+    
+    // IMPORTANTÍSSIMO POR FAVOR LEMBRAR DISSO
+    // Criar funções de: Excluir Matéria, Adicionar Discussão, Consultas.
     
     public static void criaMateria(){
         Materia materia = new Materia();
@@ -90,7 +111,16 @@ public class main {
     }
     
     public static void excluiMateria(){
-        
+        int escolhaRemocao;
+        List<Materia> listaMaterias = sistema.consultaMateria();
+        sc.nextLine();
+        System.out.println("Qual Materia você gostaria de remover?");
+        for (int i=0; i<listaMaterias.size(); i++){
+            System.out.println(+i+ ": ID: "+listaMaterias.get(i).getId()+" Nome: "+listaMaterias.get(i).getNome());
+        }
+        escolhaRemocao = Integer.parseInt(sc.nextLine());
+        sistema.removeMateria(listaMaterias.get(escolhaRemocao));
+        System.out.println("Remocao Concluida!");
     }
     
     public static void editaMateria(Materia m){
@@ -114,7 +144,7 @@ public class main {
     
     public static void criaAluno(){
         Aluno a = new Aluno();
-        
+        sc.nextLine();
         System.out.println("Qual o nome do Aluno?");
         a.setNome(sc.nextLine());
         sc.nextLine();
@@ -161,7 +191,6 @@ public class main {
     
     
     public static void adicionarPost(){
-        int opcao;
         System.out.println("Para adicionar um post, precisa primeiro escolher uma materia");
         Materia m = mostraMaterias(); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
         List<Discussao> listaDiscussao = m.getLista_discussoes();
@@ -170,15 +199,41 @@ public class main {
         Post P = new Post();
         System.out.println("Qual e a sua pergunta?");
         P.setPergunta(sc.nextLine()); 
-        listaPosts.add(P); // E aqui a lógica tem que "voltar". Post -> ListaPosts -> Discussao -> ListaDiscussao -> Materia
+        sc.nextLine();
+        listaPosts.add(P); // E aqui a lógica tem que "voltar". Post -> ListaPosts -> Discussao -> ListaDiscussao -> Materia // BUG NERVOSO NESSA LINHA
         D.setListaPosts(listaPosts);
         listaDiscussao.add(D);
         m.AdicionaDiscussao(D);
+        System.out.println("Pergunta adicionada!");
         
     }
     
+    public static void adicionarDiscussao(){
+        sc.nextLine();
+        System.out.println("Para adicionar uma discussao, precisa primeiro escolher uma materia:");
+        Materia m = mostraMaterias();
+        Discussao d = new Discussao();
+        List<Post> listaPostsVazia = new ArrayList();
+        System.out.println("Qual o ID da discussao?");
+        d.setID(sc.nextInt());
+        sc.nextLine();
+        System.out.println("Qual o Titulo da discussao?");
+        d.setTitulo(sc.nextLine());
+        sc.nextLine();
+        System.out.println("Qual o Conteudo da discussao?");
+        d.setConteudo(sc.nextLine());
+        d.setListaPosts(listaPostsVazia);
+        sc.nextLine();
+        System.out.println("Discussao criada!");
+        m.AdicionaDiscussao(d);
+        System.out.println("Discussao adicionada a materia "+m.getNome());
+        
+    }
+    
+    
     public static Discussao mostraDiscussoes(List<Discussao> listaDiscussao){
-        int opcao;   
+        int opcao;
+        Materia m = new Materia();
         System.out.println("Em qual discussao gostaria de adicionar um post?");
         for (int i=0; i<listaDiscussao.size(); i++){
             System.out.println(+i+ ": Titulo: "+listaDiscussao.get(i).getTitulo());
@@ -186,5 +241,39 @@ public class main {
         opcao = sc.nextInt();
         return listaDiscussao.get(opcao);
     }
+    
+    
+    public static void adicionarResposta(){
+        // Processo análogo de criação de post. Matéria -> ... -> Resposta
+        System.out.println("Para adicionar uma resposta, precisa primeiro escolher uma materia");
+        Materia m = mostraMaterias(); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
+        List<Discussao> listaDiscussao = m.getLista_discussoes();
+        Discussao D = mostraDiscussoes(listaDiscussao);
+        List<Post> listaPosts = D.getListaPosts();
+        Post P = mostraPosts();
+        System.out.println("Qual a sua resposta?");
+        Resposta R = new Resposta();
+        R.setResposta(sc.nextLine());
+        sc.nextLine();
+        P.AdicionaResposta(R);
+        listaPosts.add(P);
+        D.setListaPosts(listaPosts);
+        listaDiscussao.add(D);
+        m.AdicionaDiscussao(D);
+        System.out.println("Resposta adicionada!");
+    }
+    
+    public static Post mostraPosts(){
+        int opcao;
+        List<Post> listaPosts = new ArrayList();
+        System.out.println("Qual Posts gostaria de responder? ");
+        for (int i=0; i<listaPosts.size(); i++){
+            System.out.println(+i+ ": Pergunta:"+listaPosts.get(i).getPergunta());
+        }
+        opcao = sc.nextInt();
+        return listaPosts.get(opcao);
+    }
+    
+
     
 }
