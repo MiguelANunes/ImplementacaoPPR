@@ -41,9 +41,65 @@ public class SistemaMonitoria {
 	}
 	public void AvaliaMonitor(Monitor m, Avaliacao a) {
 		m.AdicionaAvaliacao(a);
-	}
-    
-    
-    
-    
+	} 
+    public List<Aluno> getListaAluno(){
+    	return listaAluno;
+    }
+    public List<Materia> getListaMateria(){
+    	return listaMateria;
+    }
+    public List<Professor> getListaProfessor(){
+    	return listaProfessor;
+    }
+    public List<Monitor> getListaMonitor(){
+    	return listaMonitor;
+    }
+    public List<Post> getListaPost(){
+    	return listaPost;
+    }
+    public List<Resposta> getListaResposta(){
+    	return listaResposta;
+    }
+    public int getQuantAluno() {
+        return alunoCount;
+    }
+    public int getQuantProfessor() {
+        return professorCount;
+    }
+    public int getQuantMateria() {
+        return materiaCount;
+    }
+    public int getQuantMonitor() {
+        return monitorCount;
+    }
+    public int getQuantPost() {
+        return postCount;
+    }
+    public int getQuantResposta() {
+        return respostaCount;
+    }
+    public List<Aluno> consultaAluno(){
+        List<Aluno> listaRetorno = new ArrayList(listaAluno);
+        return listaRetorno;
+    }
+    public List<Professor> consultaProfessor(){
+        List<Professor> listaRetorno = new ArrayList(listaProfessor);
+        return listaRetorno;
+    }
+    public List<Materia> consultaMateria(){
+        List<Materia> listaRetorno = new ArrayList(listaMateria);
+        return listaRetorno;
+    }
+    public List<Monitor> consultaMonitor(){
+        List<Monitor> listaRetorno = new ArrayList(listaMonitor);
+        return listaRetorno;
+    }
+    public List<Post> consultaPost(){
+        List<Post> listaRetorno = new ArrayList(listaPost);
+        return listaRetorno;
+    }
+    public List<Resposta> consultaResposta(){
+        List<Resposta> listaRetorno = new ArrayList(listaResposta);
+        return listaRetorno;
+    }
 }
