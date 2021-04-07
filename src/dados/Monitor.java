@@ -25,7 +25,6 @@ public class Monitor extends Pessoa implements Serializable {
 		float totalscore = score+= a.getRanking();
 		setScore(totalscore/avaliacaoCount);
 	}
-
     public void removeAvaliacao(Avaliacao a){
         listaAvaliacao.remove(a);
         avaliacaoCount--;
@@ -34,7 +33,6 @@ public class Monitor extends Pessoa implements Serializable {
         List<Avaliacao> listaRetorno = new ArrayList(listaAvaliacao);
         return listaRetorno;
     }
-
 	public String getNome() {
         return nome;
     }
@@ -73,5 +71,5 @@ public class Monitor extends Pessoa implements Serializable {
         return "Monitor{" + "nome: " + nome + ", cpf: " + cpf + ", materia: " + ", score: " + score + '}';
     }
 
+    
 }
-
