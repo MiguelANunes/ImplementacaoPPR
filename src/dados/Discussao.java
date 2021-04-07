@@ -1,9 +1,10 @@
 package dados;
 
 import java.util.List;
+import java.io.Serializable;
 import dados.*;
 
-public class Discussao {
+public class Discussao implements Serializable {
     private int id; 
     private String titulo, conteudo;
     private List<Post> listaPosts; // alteração com relação ao diagrama

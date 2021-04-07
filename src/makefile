@@ -7,7 +7,7 @@ FLAGS = -cp .
 all: compile
 
 run:
-	${RUN} ${FLAGS} negocio/SistemaMonitoria
+	${RUN} ${FLAGS} apresentação/main
 
 compile: dados apresentacao negocio/SistemaMonitoria.java
 	${CC} ${FLAGS} negocio/*.java 
@@ -19,4 +19,5 @@ apresentacao:
 	${CC} ${FLAGS} apresentação/*.java
 
 clean:
-	rm negocio/*.class negocio/*.jar dados/*.class dados/*.jar
+	rm negocio/*.class dados/*.class apresentação/*.class;
+	truncate -s 0 armazenamento/*.txt
