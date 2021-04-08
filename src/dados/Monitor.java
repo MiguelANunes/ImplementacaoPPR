@@ -8,7 +8,6 @@ public class Monitor extends Pessoa implements Serializable {
     private float score;     
     private List<Avaliacao> listaAvaliacao = new ArrayList();
     private int avaliacaoCount=0;
-    
 
     public Monitor(String nome, String cpf, String senha, Materia materia, float score) {
         super(nome,cpf,senha);
@@ -19,7 +18,7 @@ public class Monitor extends Pessoa implements Serializable {
     
     }
 
-  public void AdicionaAvaliacao(Avaliacao a) {
+    public void AdicionaAvaliacao(Avaliacao a) {
 		listaAvaliacao.add(a);
 		avaliacaoCount++;
 		float totalscore = score+= a.getRanking();
@@ -30,6 +29,7 @@ public class Monitor extends Pessoa implements Serializable {
         listaAvaliacao.remove(a);
         avaliacaoCount--;
     }
+
     public List<Avaliacao> consultaAvaliacao(){
         List<Avaliacao> listaRetorno = new ArrayList(listaAvaliacao);
         return listaRetorno;
@@ -58,14 +58,6 @@ public class Monitor extends Pessoa implements Serializable {
 
     public void setScore(float score) {
         this.score = score;
-    }
-
-    public void login(){
-    // void por hora    
-    }
-    
-    public void logout(){
-    // void por hora
     }
 
     @Override

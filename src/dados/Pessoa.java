@@ -14,7 +14,6 @@ public class Pessoa  implements Serializable{
     public Pessoa(){
         
     }
-    
 
     public String getNome() {
         return nome;
@@ -39,6 +38,15 @@ public class Pessoa  implements Serializable{
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public boolean login(String cpf, String senha){ 
+        return this.cpf == cpf && this.senha == senha;
+    }
+
+    // public void logout(){
+    //     System.out.println("Saido do Sistema !");
+    //     System.exit(1);
+    // }
     
     
 }

@@ -14,10 +14,6 @@ public class main {
         int opcao = 0;
         sistema.inicializarDados();
 
-        /*
-        GILSON: Bug N E R V O S O  acontecendo na linha 270 mais ou menos, quando se chama o método "Adiciona Resposta" - Case 8
-        */
-
         do{
             opcao = menu();
                 switch(opcao){
@@ -157,14 +153,9 @@ public class main {
     }
     
     /*
-    IMPORTANTE: Falta funções para adicionar os professores, monitores e alunos as matérias
-                Falta as funções de login e logout
+    IMPORTANTE: Falta as funções de login e logout
                 Falta arrumar os bugs na discussão
     */
-
-    /*
-    MIGUEL: Adicionar uma mensagem de sucesso ao fim de cada operação
-    */ 
 
     public static void criaMateria(){
         Materia materia = new Materia();
@@ -219,6 +210,7 @@ public class main {
         a.setSenha(sc.nextLine());
         sc.nextLine();
         sistema.AdicionaAluno(a);
+        sistema.AdicionarPessoa(a);
         System.out.println("Aluno Adicionado!");
     }
     
@@ -236,6 +228,7 @@ public class main {
         sc.nextLine();
         
         sistema.AdicionaMonitor(m);
+        sistema.AdicionarPessoa(m);
         System.out.println("Monitor Adicionado!");
     }
 
@@ -253,6 +246,7 @@ public class main {
         sc.nextLine();
         
         sistema.AdicionaProfessor(p);
+        sistema.AdicionarPessoa(p);
         System.out.println("Professor Adicionado!");
     }
 
@@ -427,5 +421,9 @@ public class main {
         return listaPosts.get(opcao);
     }
     
+    public static void login(){
+        ArrayList<Pessoa> listaPessoas = sistema.getListaPessoa();
+        
+    }
     
 }

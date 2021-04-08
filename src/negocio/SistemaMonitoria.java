@@ -4,17 +4,18 @@ import dados.*;
 
 import java.io.*;
 import java.util.List;
-
 import java.util.ArrayList;
 
 public class SistemaMonitoria {
-	private List<Aluno> listaAluno = new ArrayList<>();
-	private List<Professor> listaProfessor = new ArrayList<>();
-	private List<Materia> listaMateria = new ArrayList<>();
-	private List<Monitor> listaMonitor = new ArrayList<>();
-	private List<Post> listaPost = new ArrayList<>();
-	private List<Resposta> listaResposta = new ArrayList<>();
-	private int alunoCount=0,professorCount=0,materiaCount=0,monitorCount=0,postCount=0,respostaCount=0;
+	private ArrayList<Aluno> listaAluno = new ArrayList<>();
+	private ArrayList<Professor> listaProfessor = new ArrayList<>();
+	private ArrayList<Materia> listaMateria = new ArrayList<>();
+	private ArrayList<Monitor> listaMonitor = new ArrayList<>();
+	private ArrayList<Post> listaPost = new ArrayList<>();
+    private ArrayList<Resposta> listaResposta = new ArrayList<>();
+    private ArrayList<Pessoa> listaPessoa = new ArrayList<>(); // usado apenas para o login
+    
+	private int alunoCount=0,professorCount=0,materiaCount=0,monitorCount=0,postCount=0,respostaCount=0,pessoaCount=0;
 
 	
     public void AdicionaAluno(Aluno a) {
@@ -38,7 +39,12 @@ public class SistemaMonitoria {
     public void AdicionaPost(Post p) {
 		listaPost.add(p);
 		postCount++;
-	}
+    }
+    
+    public void AdicionarPessoa(Pessoa p){
+        listaPessoa.add(p);
+        pessoaCount++;
+    }
         
     public void AdicionaResposta(Resposta r) {
 		listaResposta.add(r);
@@ -50,28 +56,32 @@ public class SistemaMonitoria {
 	} 
 
         
-    public List<Aluno> getListaAluno(){
+    public ArrayList<Aluno> getListaAluno(){
     	return listaAluno;
     }
     
-    public List<Materia> getListaMateria(){
+    public ArrayList<Materia> getListaMateria(){
     	return listaMateria;
     }
     
-    public List<Professor> getListaProfessor(){
+    public ArrayList<Professor> getListaProfessor(){
     	return listaProfessor;
     }
     
-    public List<Monitor> getListaMonitor(){
+    public ArrayList<Monitor> getListaMonitor(){
     	return listaMonitor;
     }
     
-    public List<Post> getListaPost(){
+    public ArrayList<Post> getListaPost(){
     	return listaPost;
     }
     
-    public List<Resposta> getListaResposta(){
+    public ArrayList<Resposta> getListaResposta(){
     	return listaResposta;
+    }
+
+    public ArrayList<Resposta> getListaPessoa(){
+    	return listaPessoa;
     }
     
     public int getQuantAluno() {
@@ -93,35 +103,45 @@ public class SistemaMonitoria {
     public int getQuantPost() {
         return postCount;
     }
+
+    public int getQuantPessoa() {
+        return pessoaCount;
+    }
     
     public int getQuantResposta() {
         return respostaCount;
     }
 
-    public List<Aluno> consultaAluno(){
-        List<Aluno> listaRetorno = new ArrayList(listaAluno);
+    public ArrayList<Aluno> consultaAluno(){
+        ArrayList<Aluno> listaRetorno = new ArrayList(listaAluno);
         return listaRetorno;
     }
 
-    public List<Professor> consultaProfessor(){
-        List<Professor> listaRetorno = new ArrayList(listaProfessor);
+    public ArrayList<Professor> consultaProfessor(){
+        ArrayList<Professor> listaRetorno = new ArrayList(listaProfessor);
         return listaRetorno;
     }
 
-    public List<Materia> consultaMateria(){
-        List<Materia> listaRetorno = new ArrayList(listaMateria);
+    public ArrayList<Materia> consultaMateria(){
+        ArrayList<Materia> listaRetorno = new ArrayList(listaMateria);
         return listaRetorno;
     }
-    public List<Monitor> consultaMonitor(){
-        List<Monitor> listaRetorno = new ArrayList(listaMonitor);
+
+    public ArrayList<Monitor> consultaMonitor(){
+        ArrayList<Monitor> listaRetorno = new ArrayList(listaMonitor);
         return listaRetorno;
     }
-    public List<Post> consultaPost(){
-        List<Post> listaRetorno = new ArrayList(listaPost);
+
+    public ArrayList<Post> consultaPost(){
+        ArrayList<Post> listaRetorno = new ArrayList(listaPost);
         return listaRetorno;
     }
-    public List<Resposta> consultaResposta(){
-        List<Resposta> listaRetorno = new ArrayList(listaResposta);
+    public ArrayList<Resposta> consultaResposta(){
+        ArrayList<Resposta> listaRetorno = new ArrayList(listaResposta);
+        return listaRetorno;
+    }
+    public ArrayList<Resposta> consultaPessoa(){
+        ArrayList<Resposta> listaRetorno = new ArrayList(listaPessoa);
         return listaRetorno;
     }
 
@@ -149,10 +169,12 @@ public class SistemaMonitoria {
         listaResposta.remove(r);
         respostaCount--;
     }
+    public void removePessoa(Pessoa p){
+        listaPessoa.remove(p);
+        pessoaCount--;
+    }
 
     public void inicializarDados(){
-            // MIGUEL: Mudar essa função pra deixar cada abertura de arquivo dentro de um try/catch
-            // assim podemos saber quais arquivos estão vazios quando o programa inicia
         try{
             String currentpath = System.getProperty("user.dir");
 
@@ -262,63 +284,11 @@ public class SistemaMonitoria {
             }finally{
                 leitorMonitor.close();
             }
-            /*
-            InputStream arquivoResposta       = new FileInputStream(".//armazenamento//Resposta.txt");
-            ObjectInputStream leitorResposta  = new ObjectInputStream (arquivoResposta);
-
-            try {
-                while(true){
-                    Resposta r = new Resposta();
-                    r = (Resposta) leitorResposta.readObject();
-
-                    if(r.getResposta() != null && !(r.getResposta().isEmpty())){
-                        AdicionaResposta(r);
-                    }else{
-                        continue;
-                    }
-                }                
-            } catch (EOFException e) {
-                
-            }catch (IOException e) {
-                System.out.println("Problema ao Ler dados");
-                e.printStackTrace();
-            } catch (ClassNotFoundException e1) {
-                System.out.println("Problema ao Ler dados");
-                e1.printStackTrace();
-            }finally{
-                leitorResposta.close();
-            }
-
-            InputStream arquivoPost      = new FileInputStream(".//armazenamento//Post.txt");
-            ObjectInputStream leitorPost = new ObjectInputStream (arquivoPost);
-
-            try {
-                while(true){
-                    Post p = new Post();
-                    p = (Post) leitorPost.readObject();
-
-                    if(p.getPergunta() != null && !(p.getPergunta().isEmpty())){
-                        AdicionaPost(p);
-                    }else{
-                        continue;
-                    }
-                }                
-            } catch (EOFException e) {
-                
-            }catch (IOException e) {
-                System.out.println("Problema ao Ler dados");
-                e.printStackTrace();
-            } catch (ClassNotFoundException e1) {
-                System.out.println("Problema ao Ler dados");
-                e1.printStackTrace();
-            }finally{
-                leitorPost.close();
-            }
-            */
-                 
-        /*}catch(EOFException ex){
+ 
+        }catch(EOFException ex){
+            System.out.println("Alguns arquivos não tem nada salvo !");
             // se der excessão de EOF não faz nada pois significa que os arquivos de dados estão vazios
-        */}catch (IOException e){
+        }catch (IOException e){
             System.out.println("Erro ao ler dados !");
             e.printStackTrace();
         }
@@ -366,33 +336,6 @@ public class SistemaMonitoria {
                 escritorMonitor.writeObject(M);
             
                 escritorMonitor.close();
-
-            /*
-            OutputStream arquivoAvaliacao        = new FileOutputStream(".//armazenamento//Avaliacao.txt");
-            ObjectOutputStream escritorAvaliacao = new ObjectOutputStream (arquivoAvaliacao);
-
-            for(Avaliacao A: lista)
-
-            OutputStream arquivoDiscussao        = new FileOutputStream(".//armazenamento//Discussão.txt");
-            ObjectOutputStream escritorDiscussao = new ObjectOutputStream (arquivoDiscussao);
-
-            OutputStream arquivoResposta         = new FileOutputStream(currentpath + "/src/armazenamento/Resposta.txt");
-            ObjectOutputStream escritorResposta  = new ObjectOutputStream (arquivoResposta);
-
-            for(Resposta R: listaResposta)
-                escritorResposta.writeObject(R);
-            
-                escritorResposta.close();
-
-            OutputStream arquivoPost             = new FileOutputStream(currentpath + "/src/armazenamento/Post.txt");
-            ObjectOutputStream escritorPost      = new ObjectOutputStream (arquivoPost);
-
-            for(Post P: listaPost)
-                escritorPost.writeObject(P);
-            
-            escritorPost.close();
-            */
-
             
         }catch (IOException e){ 
             System.out.println("Erro ao salvar dados !");
