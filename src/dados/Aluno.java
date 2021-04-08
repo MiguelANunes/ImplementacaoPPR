@@ -30,7 +30,7 @@ public class Aluno extends Pessoa {
     public String getNome() {
         return nome;
     }
-    
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -39,5 +39,4 @@ public class Aluno extends Pessoa {
     public String toString() {
         return "Aluno [cpf=" + cpf + ", nome=" + nome + ", senha=" + senha + "]";
     }
-    
 }
