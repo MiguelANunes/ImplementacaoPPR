@@ -90,6 +90,10 @@ public class main {
     // IMPORTANTÍSSIMO POR FAVOR LEMBRAR DISSO
     // Criar funções de: Excluir Matéria, Adicionar Discussão, Consultas.
     
+    /*
+    MIGUEL: Adicionar uma mensagem de sucesso ao fim de cada operação
+    */ 
+
     public static void criaMateria(){
         Materia materia = new Materia();
         Scanner sc = new Scanner(System.in);
@@ -107,7 +111,7 @@ public class main {
         materia.setLista_discussoes(lista_discussoes);
         ArrayList<Monitor> lista_monitores = new ArrayList<Monitor>();
         materia.setLista_monitores(lista_monitores);
-        sistema.AdicionaMateria(materia); // criar funcao no sistema
+        sistema.AdicionaMateria(materia); 
     }
     
     public static void excluiMateria(){
@@ -194,14 +198,14 @@ public class main {
         System.out.println("Para adicionar um post, precisa primeiro escolher uma materia");
         Materia m = mostraMaterias(); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
         List<Discussao> listaDiscussao = m.getLista_discussoes();
-        Discussao D = mostraDiscussoes(listaDiscussao);
+        Discussao D = mostraDiscussoes(listaDiscussao, "Em qual discussao gostaria de adicionar um post?");
         List<Post> listaPosts = D.getListaPosts();
         Post P = new Post();
         System.out.println("Qual e a sua pergunta?");
         P.setPergunta(sc.nextLine()); 
         sc.nextLine();
-        listaPosts.add(P); // E aqui a lógica tem que "voltar". Post -> ListaPosts -> Discussao -> ListaDiscussao -> Materia // BUG NERVOSO NESSA LINHA
-        D.setListaPosts(listaPosts);
+        listaPosts.add(P); /*BUG NERVOSO NESSA LINHA*/ // E aqui a lógica tem que "voltar". 
+        D.setListaPosts(listaPosts); // Post -> ListaPosts -> Discussao -> ListaDiscussao -> Materia  
         listaDiscussao.add(D);
         m.AdicionaDiscussao(D);
         System.out.println("Pergunta adicionada!");
@@ -231,10 +235,10 @@ public class main {
     }
     
     
-    public static Discussao mostraDiscussoes(List<Discussao> listaDiscussao){
+    public static Discussao mostraDiscussoes(List<Discussao> listaDiscussao, String pergunta){
         int opcao;
-        Materia m = new Materia();
-        System.out.println("Em qual discussao gostaria de adicionar um post?");
+        // Materia m = new Materia();
+        System.out.println(pergunta);
         for (int i=0; i<listaDiscussao.size(); i++){
             System.out.println(+i+ ": Titulo: "+listaDiscussao.get(i).getTitulo());
         }
@@ -247,10 +251,10 @@ public class main {
         // Processo análogo de criação de post. Matéria -> ... -> Resposta
         System.out.println("Para adicionar uma resposta, precisa primeiro escolher uma materia");
         Materia m = mostraMaterias(); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
-        List<Discussao> listaDiscussao = m.getLista_discussoes();
-        Discussao D = mostraDiscussoes(listaDiscussao);
-        List<Post> listaPosts = D.getListaPosts();
-        Post P = mostraPosts();
+        List<Discussao> listaDiscussao = m.getLista_discussoes(); // por algum motivo, na linha abaixo aparecem 3 copias da discussao
+        Discussao D = mostraDiscussoes(listaDiscussao, "Em qual discussao gostaria de adicionar uma resposta?");
+        List<Post> listaPosts = D.getListaPosts(); // lista de posts da discussão selecionada
+        Post P = mostraPosts(listaPosts); // prompt pro usuário escolher o post que ele quer responder
         System.out.println("Qual a sua resposta?");
         Resposta R = new Resposta();
         R.setResposta(sc.nextLine());
@@ -263,10 +267,9 @@ public class main {
         System.out.println("Resposta adicionada!");
     }
     
-    public static Post mostraPosts(){
+    public static Post mostraPosts(List<Post> listaPosts){
         int opcao;
-        List<Post> listaPosts = new ArrayList();
-        System.out.println("Qual Posts gostaria de responder? ");
+        System.out.println("Qual Post gostaria de responder ?");
         for (int i=0; i<listaPosts.size(); i++){
             System.out.println(+i+ ": Pergunta:"+listaPosts.get(i).getPergunta());
         }

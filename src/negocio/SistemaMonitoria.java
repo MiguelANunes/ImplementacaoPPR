@@ -151,7 +151,8 @@ public class SistemaMonitoria {
     }
 
     public void inicializarDados(){
-
+            // MIGUEL: Mudar essa função pra deixar cada abertura de arquivo dentro de um try/catch
+            // assim podemos saber quais arquivos estão vazios quando o programa inicia
         try{
             String currentpath = System.getProperty("user.dir");
 
@@ -314,8 +315,10 @@ public class SistemaMonitoria {
                 leitorPost.close();
             }
             */
-            
-        }catch (IOException e){
+                 
+        /*}catch(EOFException ex){
+            // se der excessão de EOF não faz nada pois significa que os arquivos de dados estão vazios
+        */}catch (IOException e){
             System.out.println("Erro ao ler dados !");
             e.printStackTrace();
         }
@@ -325,6 +328,13 @@ public class SistemaMonitoria {
     public void salvarDados(){ // salvar nos arquivos ao terminar o programa
 
         try{
+
+            String currentpath = System.getProperty("user.dir");
+
+            if(currentpath.endsWith("src")){ // caso "src" esteja no fim path do projeto, é removido, pois isso já está no
+                currentpath = currentpath.substring(0, currentpath.length()-3);// path do arquivo a ser aberto
+            }
+
             OutputStream arquivoMateria        = new FileOutputStream(currentpath + "/src/armazenamento/Materia.txt");
             ObjectOutputStream escritorMateria = new ObjectOutputStream (arquivoMateria);
 

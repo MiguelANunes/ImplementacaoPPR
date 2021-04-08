@@ -1,7 +1,8 @@
 package dados;
 
+import java.io.Serializable;
 
-public class Resposta {
+public class Resposta implements Serializable{
     private String resposta;
     
 
