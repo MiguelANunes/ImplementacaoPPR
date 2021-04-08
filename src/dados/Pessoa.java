@@ -40,7 +40,7 @@ public class Pessoa  implements Serializable{
     }
 
     public boolean login(String cpf, String senha){ 
-        return this.cpf == cpf && this.senha == senha;
+        return this.cpf.equals(cpf) && this.senha.equals(senha);
     }
 
     // public void logout(){
