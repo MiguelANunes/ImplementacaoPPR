@@ -12,8 +12,270 @@ public class main {
     
     public static void main(String[] args) {
         int opcao = 0;
+        int opcaoInicio,opcaoAluno, opcaoProfessor,opcaoMonitor;
         sistema.inicializarDados();
 
+
+       /*
+        Esse aqui é pra ser o "Menu universal". Precisamos mostrar apenas os métodos de registro
+        de aluno, professor e monitor, além do método de Login.
+        Com o retorno de Login sendo instanceof(Aluno) (ou podemos usar um INT),
+        chamamos os métodos menu<classe>(); com seu próprio while.
+        */
+       
+       /*
+       AQUI EMBAIXO VÃO OS DO-WHILES DE CADA PESSOA ESPECÍFICA,
+       PARA CASO O LOGIN DE UM ALUNO FUNCIONE, MOSTRE O MENU DO ALUNO,
+       UM PROFESSOR DO PROFESSOR, ETC.
+       */
+       
+        do{ // MENU DO INICIO, PRIMEIRA EXECUÇÃO/TELA DE LOGIN
+            opcaoInicio = menuInicio();
+            switch(opcaoInicio){
+                case 1:
+                    criaAluno();
+                    break;
+                    
+                case 2:
+                    criaProfessor();
+                    break;
+                
+                case 3:
+                    criaMonitor();
+                    break;
+                
+                case 4:
+                    //login();
+                    break;
+                    
+        }
+       
+       
+       
+        }while (opcaoInicio != -1);
+        //sistema.salvarDados();
+        
+        
+        do{
+           opcaoAluno = menuAluno();
+           switch(opcaoAluno){
+                case 1:
+                    sc.nextLine();
+                    adicionarDiscussao();
+                    break;
+                    
+                case 2:
+                    adicionarPost();
+                    break;
+                
+                case 3:
+                    adicionarResposta();
+                    break;
+                
+                case 4:
+                    sc.nextLine();
+                    System.out.println("Consulta de Professores");
+                    List<Professor> listaConsulta2 = sistema.consultaProfessor();
+                    for (Professor a: listaConsulta2){
+                        System.out.println("Nome  do Professor: "+a.getNome());
+                    //    System.out.println("CPF   do Professor: "+a.getCpf());
+                    //    System.out.println("Senha do Professor: "+a.getSenha());
+                    }
+                    break;
+                    
+                case 5:
+                    sc.nextLine();
+                    System.out.println("Consulta de Monitores");
+                    List<Monitor> listaConsulta3 = sistema.consultaMonitor();
+                    for (Monitor a: listaConsulta3){
+                        System.out.println("Nome  do Monitor: "+a.getNome());
+                    //    System.out.println("CPF   do Monitor: "+a.getCpf());
+                    //    System.out.println("Senha do Monitor: "+a.getSenha());
+                    }                    
+                    break;
+               
+               
+               
+           }
+            
+            
+        }while (opcaoAluno != -1);
+        //sistema.salvarDados();
+       
+        
+        do{
+            opcaoProfessor = menuProfessor();
+            switch (opcaoProfessor){
+                case 1:
+                criaMateria();
+                break;
+                        
+            case 2:
+                excluiMateria();
+                break;
+
+            case 3:
+                Materia m = mostraMaterias("Qual materia gostaria de editar?");
+                editaMateria(m); 
+                break;
+
+            case 4:
+                criaAluno();
+                break;
+
+            case 5:
+                criaMonitor();
+                break;
+
+            case 6:
+                criaProfessor();
+                break;
+
+            case 7:
+                sc.nextLine();
+                adicionarDiscussao();
+                break;
+
+            case 8:
+                adicionarPost();
+                break;
+
+            case 9:
+                adicionarResposta();
+                break;
+
+            case 10:
+                insereAlunoMateria();
+                break;
+
+            case 11:
+                insereProfessorMateria();
+                break;
+
+            case 12:
+                insereMonitorMateria();
+                break;
+
+            case 13:
+                sc.nextLine();
+                System.out.println("Consulta de Alunos");
+                List<Aluno> listaConsulta1 = sistema.consultaAluno();
+                for (Aluno a: listaConsulta1){
+                    System.out.println("Nome  do Aluno: "+a.getNome());
+                    System.out.println("CPF   do Aluno: "+a.getCpf());
+                    System.out.println("Senha do Aluno: "+a.getSenha());
+                }
+                break;
+
+            case 14:
+                sc.nextLine();
+                System.out.println("Consulta de Professores");
+                List<Professor> listaConsulta2 = sistema.consultaProfessor();
+                for (Professor a: listaConsulta2){
+                    System.out.println("Nome  do Professor: "+a.getNome());
+                    System.out.println("CPF   do Professor: "+a.getCpf());
+                    System.out.println("Senha do Professor: "+a.getSenha());
+                }
+                break;
+
+            case 15:
+                sc.nextLine();
+                System.out.println("Consulta de Monitores");
+                List<Monitor> listaConsulta3 = sistema.consultaMonitor();
+                for (Monitor a: listaConsulta3){
+                    System.out.println("Nome  do Monitor: "+a.getNome());
+                    System.out.println("CPF   do Monitor: "+a.getCpf());
+                    System.out.println("Senha do Monitor: "+a.getSenha());
+                }
+                break;
+
+            case 16:
+                sc.nextLine();
+                System.out.println("Consulta de Materias");
+                List<Materia> listaConsulta4 = sistema.consultaMateria();
+                for (Materia a: listaConsulta4){
+                    System.out.println("Nome  da Materia: "+a.getNome());
+                    System.out.println("ID    da Materia: "+a.getId());
+                    System.out.println("Quatidade de Discussões: "+a.getDiscCount());
+                    System.out.println("Alunos na Matéria: ");
+                    for(Aluno a1: a.getLista_alunos())
+                        System.out.println(a1.toString());
+                    System.out.println("Professores na Matéria: ");
+                    for(Professor a1: a.getLista_professores())
+                        System.out.println(a1.toString());
+                    System.out.println("Monitores na Matéria: ");
+                    for(Monitor a1: a.getLista_monitores())
+                        System.out.println(a1.toString());
+
+                }
+                break;
+
+        }
+            
+        }while(opcaoProfessor != -1);
+        //sistema.salvarDados();    
+        
+        
+       do{
+           opcaoMonitor = menuMonitor();
+           switch (opcaoMonitor){
+            case 1:
+                sc.nextLine();
+                adicionarDiscussao();
+                break;
+                    
+            case 2:
+                adicionarPost();
+                break;
+                
+            case 3:
+                adicionarResposta();
+                break;
+                
+            case 4:
+                sc.nextLine();
+                System.out.println("Consulta de Professores");
+                List<Professor> listaConsulta2 = sistema.consultaProfessor();
+                for (Professor a: listaConsulta2){
+                    System.out.println("Nome  do Professor: "+a.getNome());
+                //    System.out.println("CPF   do Professor: "+a.getCpf());
+                //    System.out.println("Senha do Professor: "+a.getSenha());
+                }
+                break;
+                    
+            case 5:
+                sc.nextLine();
+                System.out.println("Consulta de Monitores");
+                List<Monitor> listaConsulta3 = sistema.consultaMonitor();
+                for (Monitor a: listaConsulta3){
+                    System.out.println("Nome  do Monitor: "+a.getNome());
+                //    System.out.println("CPF   do Monitor: "+a.getCpf());
+                //    System.out.println("Senha do Monitor: "+a.getSenha());
+                }                    
+                break;
+                
+            case 6:
+                sc.nextLine();
+                System.out.println("Consulta de Alunos");
+                List<Aluno> listaConsulta1 = sistema.consultaAluno();
+                for (Aluno a: listaConsulta1){
+                    System.out.println("Nome  do Aluno: "+a.getNome());
+                //    System.out.println("CPF   do Aluno: "+a.getCpf());
+                //    System.out.println("Senha do Aluno: "+a.getSenha());
+                }
+                break;    
+                
+            }
+           
+
+       }while(opcaoMonitor != -1);
+        
+       
+       
+       /* 
+       Aqui embaixo é o Do-while "genérico" com todos os métodos.
+       */
+       
         do{
             opcao = menu();
                 switch(opcao){
@@ -151,6 +413,66 @@ public class main {
      
         return sc.nextInt();
     }
+    
+    
+    private static int menuInicio(){
+        System.out.println("");        
+        System.out.println("Informe o número da opção que desejas executar:");
+        System.out.println("1 - Criar Aluno");
+        System.out.println("2 - Criar Professor");
+        System.out.println("3 - Criar Monitor");
+        System.out.println("4 - Login");
+        return sc.nextInt();
+    }
+    
+    private static int menuAluno(){
+        System.out.println("");
+        System.out.println("Informe o número da opção que desejas executar:");
+        System.out.println("1 - Adicionar uma Discussao");
+        System.out.println("2 - Adicionar um Post");
+        System.out.println("3 - Adicionar uma Resposta");
+        System.out.println("4 - Consultas Professores");
+        System.out.println("5 - Consultar Monitores");
+        return sc.nextInt();
+    }
+    
+    private static int menuProfessor(){
+        System.out.println("");
+        System.out.println("Informe o número da opção que desejas executar: ");
+        System.out.println("1 - Adicionar Materia");
+        System.out.println("2 - Excluir Materia");
+        System.out.println("3 - Editar Materia");
+        System.out.println("4 - Adicionar Aluno");
+        System.out.println("5 - Adicionar Monitor");
+        System.out.println("6 - Adicionar Professor");
+        System.out.println("7 - Adicionar Discussao");
+        System.out.println("8 - Adicionar Post");
+        System.out.println("9 - Adicionar Resposta");
+        System.out.println("10 - Inserir Aluno numa Materia");
+        System.out.println("11 - Inserir Professor numa Materia");
+        System.out.println("12 - Inserir Monitor numa Materia");
+        System.out.println("13 - Consultar Alunos");
+        System.out.println("14 - Consultar Professores");
+        System.out.println("15 - Consultar Monitores");
+        System.out.println("16 - Consultar Materias");
+        System.out.println("Digite -1 para sair");
+        System.out.print("Sua opção: ");
+     
+        return sc.nextInt();
+    }
+    
+   private static int menuMonitor(){
+        System.out.println("");
+        System.out.println("Informe o número da opção que desejas executar:");
+        System.out.println("1 - Adicionar uma Discussao");
+        System.out.println("2 - Adicionar um Post");
+        System.out.println("3 - Adicionar uma Resposta");
+        System.out.println("4 - Consultas Professores");
+        System.out.println("5 - Consultar Monitores");
+        System.out.println("6 - Consultar Alunos");
+        return sc.nextInt();
+   }
+    
     
     /*
     IMPORTANTE: Falta as funções de login e logout
