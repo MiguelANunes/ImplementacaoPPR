@@ -12,75 +12,382 @@ public class main {
     
     public static void main(String[] args) {
         int opcao = 0;
-
-
+        int opcaoInicio,opcaoAluno, opcaoProfessor,opcaoMonitor;
         sistema.inicializarDados();
 
 
-        /*
-        MIGUEL: Bug interessante com a serialização
-                quando escrevo os dados que foram lidos de um arquivo, aparentemente
-                está escrevendo null no arquivo
-                Será que isso é pq eu estou criando um objeto da classe com o construtor vazio ?
+       /*
+        Esse aqui é pra ser o "Menu universal". Precisamos mostrar apenas os métodos de registro
+        de aluno, professor e monitor, além do método de Login.
+        Com o retorno de Login sendo instanceof(Aluno) (ou podemos usar um INT),
+        chamamos os métodos menu<classe>(); com seu próprio while.
         */
+       
+       /*
+       AQUI EMBAIXO VÃO OS DO-WHILES DE CADA PESSOA ESPECÍFICA,
+       PARA CASO O LOGIN DE UM ALUNO FUNCIONE, MOSTRE O MENU DO ALUNO,
+       UM PROFESSOR DO PROFESSOR, ETC.
+       */
+       
+        do{ // MENU DO INICIO, PRIMEIRA EXECUÇÃO/TELA DE LOGIN
+            opcaoInicio = menuInicio();
+            switch(opcaoInicio){
+                case 1:
+                    criaAluno();
+                    break;
+                    
+                case 2:
+                    criaProfessor();
+                    break;
+                
+                case 3:
+                    criaMonitor();
+                    break;
+                
+                case 4:
+                    //login();
+                    break;
+                    
+        }
+       
+       
+       
+        }while (opcaoInicio != -1);
+        //sistema.salvarDados();
         
-        /*
-        GILSON: Bug N E R V O S O  acontecendo na linha 270 mais ou menos, quando se chama o método "Adiciona Resposta" - Case 8
-        */
+        
+        do{
+           opcaoAluno = menuAluno();
+           switch(opcaoAluno){
+                case 1:
+                    sc.nextLine();
+                    adicionarDiscussao();
+                    break;
+                    
+                case 2:
+                    adicionarPost();
+                    break;
+                
+                case 3:
+                    adicionarResposta();
+                    break;
+                
+                case 4:
+                    sc.nextLine();
+                    System.out.println("Consulta de Professores");
+                    List<Professor> listaConsulta2 = sistema.consultaProfessor();
+                    for (Professor a: listaConsulta2){
+                        System.out.println("Nome  do Professor: "+a.getNome());
+                    //    System.out.println("CPF   do Professor: "+a.getCpf());
+                    //    System.out.println("Senha do Professor: "+a.getSenha());
+                    }
+                    break;
+                    
+                case 5:
+                    sc.nextLine();
+                    System.out.println("Consulta de Monitores");
+                    List<Monitor> listaConsulta3 = sistema.consultaMonitor();
+                    for (Monitor a: listaConsulta3){
+                        System.out.println("Nome  do Monitor: "+a.getNome());
+                    //    System.out.println("CPF   do Monitor: "+a.getCpf());
+                    //    System.out.println("Senha do Monitor: "+a.getSenha());
+                    }                    
+                    break;
+               
+               
+               
+           }
+            
+            
+        }while (opcaoAluno != -1);
+        //sistema.salvarDados();
+       
+        
+        do{
+            opcaoProfessor = menuProfessor();
+            switch (opcaoProfessor){
+                case 1:
+                criaMateria();
+                break;
+                        
+            case 2:
+                excluiMateria();
+                break;
 
+            case 3:
+                Materia m = mostraMaterias("Qual materia gostaria de editar?");
+                editaMateria(m); 
+                break;
+
+            case 4:
+                criaAluno();
+                break;
+
+            case 5:
+                criaMonitor();
+                break;
+
+            case 6:
+                criaProfessor();
+                break;
+
+            case 7:
+                sc.nextLine();
+                adicionarDiscussao();
+                break;
+
+            case 8:
+                adicionarPost();
+                break;
+
+            case 9:
+                adicionarResposta();
+                break;
+
+            case 10:
+                insereAlunoMateria();
+                break;
+
+            case 11:
+                insereProfessorMateria();
+                break;
+
+            case 12:
+                insereMonitorMateria();
+                break;
+
+            case 13:
+                sc.nextLine();
+                System.out.println("Consulta de Alunos");
+                List<Aluno> listaConsulta1 = sistema.consultaAluno();
+                for (Aluno a: listaConsulta1){
+                    System.out.println("Nome  do Aluno: "+a.getNome());
+                    System.out.println("CPF   do Aluno: "+a.getCpf());
+                    System.out.println("Senha do Aluno: "+a.getSenha());
+                }
+                break;
+
+            case 14:
+                sc.nextLine();
+                System.out.println("Consulta de Professores");
+                List<Professor> listaConsulta2 = sistema.consultaProfessor();
+                for (Professor a: listaConsulta2){
+                    System.out.println("Nome  do Professor: "+a.getNome());
+                    System.out.println("CPF   do Professor: "+a.getCpf());
+                    System.out.println("Senha do Professor: "+a.getSenha());
+                }
+                break;
+
+            case 15:
+                sc.nextLine();
+                System.out.println("Consulta de Monitores");
+                List<Monitor> listaConsulta3 = sistema.consultaMonitor();
+                for (Monitor a: listaConsulta3){
+                    System.out.println("Nome  do Monitor: "+a.getNome());
+                    System.out.println("CPF   do Monitor: "+a.getCpf());
+                    System.out.println("Senha do Monitor: "+a.getSenha());
+                }
+                break;
+
+            case 16:
+                sc.nextLine();
+                System.out.println("Consulta de Materias");
+                List<Materia> listaConsulta4 = sistema.consultaMateria();
+                for (Materia a: listaConsulta4){
+                    System.out.println("Nome  da Materia: "+a.getNome());
+                    System.out.println("ID    da Materia: "+a.getId());
+                    System.out.println("Quatidade de Discussões: "+a.getDiscCount());
+                    System.out.println("Alunos na Matéria: ");
+                    for(Aluno a1: a.getLista_alunos())
+                        System.out.println(a1.toString());
+                    System.out.println("Professores na Matéria: ");
+                    for(Professor a1: a.getLista_professores())
+                        System.out.println(a1.toString());
+                    System.out.println("Monitores na Matéria: ");
+                    for(Monitor a1: a.getLista_monitores())
+                        System.out.println(a1.toString());
+
+                }
+                break;
+
+        }
+            
+        }while(opcaoProfessor != -1);
+        //sistema.salvarDados();    
+        
+        
+       do{
+           opcaoMonitor = menuMonitor();
+           switch (opcaoMonitor){
+            case 1:
+                sc.nextLine();
+                adicionarDiscussao();
+                break;
+                    
+            case 2:
+                adicionarPost();
+                break;
+                
+            case 3:
+                adicionarResposta();
+                break;
+                
+            case 4:
+                sc.nextLine();
+                System.out.println("Consulta de Professores");
+                List<Professor> listaConsulta2 = sistema.consultaProfessor();
+                for (Professor a: listaConsulta2){
+                    System.out.println("Nome  do Professor: "+a.getNome());
+                //    System.out.println("CPF   do Professor: "+a.getCpf());
+                //    System.out.println("Senha do Professor: "+a.getSenha());
+                }
+                break;
+                    
+            case 5:
+                sc.nextLine();
+                System.out.println("Consulta de Monitores");
+                List<Monitor> listaConsulta3 = sistema.consultaMonitor();
+                for (Monitor a: listaConsulta3){
+                    System.out.println("Nome  do Monitor: "+a.getNome());
+                //    System.out.println("CPF   do Monitor: "+a.getCpf());
+                //    System.out.println("Senha do Monitor: "+a.getSenha());
+                }                    
+                break;
+                
+            case 6:
+                sc.nextLine();
+                System.out.println("Consulta de Alunos");
+                List<Aluno> listaConsulta1 = sistema.consultaAluno();
+                for (Aluno a: listaConsulta1){
+                    System.out.println("Nome  do Aluno: "+a.getNome());
+                //    System.out.println("CPF   do Aluno: "+a.getCpf());
+                //    System.out.println("Senha do Aluno: "+a.getSenha());
+                }
+                break;    
+                
+            }
+           
+
+       }while(opcaoMonitor != -1);
+        
+       
+       
+       /* 
+       Aqui embaixo é o Do-while "genérico" com todos os métodos.
+       */
+       
         do{
             opcao = menu();
-
                 switch(opcao){
                     case 1:
                         criaMateria();
                         break;
+                        
                     case 2:
                         excluiMateria();
                         break;
+
                     case 3:
-                        Materia m = mostraMaterias();
+                        Materia m = mostraMaterias("Qual materia gostaria de editar?");
                         editaMateria(m); 
                         break;
+
                     case 4:
                         criaAluno();
                         break;
+
                     case 5:
                         criaMonitor();
                         break;
+
                     case 6:
                         criaProfessor();
                         break;
+
                     case 7:
+                        sc.nextLine();
+                        adicionarDiscussao();
+                        break;
+
+                    case 8:
                         adicionarPost();
                         break;
-                    case 8:
+
+                    case 9:
                         adicionarResposta();
                         break;
-                    case 9:
+
+                    case 10:
+                        insereAlunoMateria();
+                        break;
+                        
+                    case 11:
+                        insereProfessorMateria();
+                        break;
+
+                    case 12:
+                        insereMonitorMateria();
+                        break;
+                        
+                    case 13:
                         sc.nextLine();
                         System.out.println("Consulta de Alunos");
                         List<Aluno> listaConsulta1 = sistema.consultaAluno();
                         for (Aluno a: listaConsulta1){
-                            System.out.println("Nome do Aluno: "+a.getNome());
-                            System.out.println("CPF do Aluno: "+a.getCpf());
+                            System.out.println("Nome  do Aluno: "+a.getNome());
+                            System.out.println("CPF   do Aluno: "+a.getCpf());
                             System.out.println("Senha do Aluno: "+a.getSenha());
                         }
                         break;
-                        
-                    case 10:
+
+                    case 14:
                         sc.nextLine();
-                        adicionarDiscussao();
+                        System.out.println("Consulta de Professores");
+                        List<Professor> listaConsulta2 = sistema.consultaProfessor();
+                        for (Professor a: listaConsulta2){
+                            System.out.println("Nome  do Professor: "+a.getNome());
+                            System.out.println("CPF   do Professor: "+a.getCpf());
+                            System.out.println("Senha do Professor: "+a.getSenha());
+                        }
+                        break;
+
+                    case 15:
+                        sc.nextLine();
+                        System.out.println("Consulta de Monitores");
+                        List<Monitor> listaConsulta3 = sistema.consultaMonitor();
+                        for (Monitor a: listaConsulta3){
+                            System.out.println("Nome  do Monitor: "+a.getNome());
+                            System.out.println("CPF   do Monitor: "+a.getCpf());
+                            System.out.println("Senha do Monitor: "+a.getSenha());
+                        }
+                        break;
+                    
+                    case 16:
+                        sc.nextLine();
+                        System.out.println("Consulta de Materias");
+                        List<Materia> listaConsulta4 = sistema.consultaMateria();
+                        for (Materia a: listaConsulta4){
+                            System.out.println("Nome  da Materia: "+a.getNome());
+                            System.out.println("ID    da Materia: "+a.getId());
+                            System.out.println("Quatidade de Discussões: "+a.getDiscCount());
+                            System.out.println("Alunos na Matéria: ");
+                            for(Aluno a1: a.getLista_alunos())
+                                System.out.println(a1.toString());
+                            System.out.println("Professores na Matéria: ");
+                            for(Professor a1: a.getLista_professores())
+                                System.out.println(a1.toString());
+                            System.out.println("Monitores na Matéria: ");
+                            for(Monitor a1: a.getLista_monitores())
+                                System.out.println(a1.toString());
+
+                        }
                         break;
                         
                 }
             } while(opcao != -1);
-
             sistema.salvarDados();
-            
         }
    
-    
     private static int menu(){ 
                 
         System.out.println("");
@@ -91,19 +398,92 @@ public class main {
         System.out.println("4 - Adicionar Aluno");
         System.out.println("5 - Adicionar Monitor");
         System.out.println("6 - Adicionar Professor");
-        System.out.println("7 - Adicionar Post");
-        System.out.println("8 - Adicionar Resposta");
-        System.out.println("9 - Consultar Alunos");
-        System.out.println("10 - Adicionar Discussao");
+        System.out.println("7 - Adicionar Discussao");
+        System.out.println("8 - Adicionar Post");
+        System.out.println("9 - Adicionar Resposta");
+        System.out.println("10 - Inserir Aluno numa Materia");
+        System.out.println("11 - Inserir Professor numa Materia");
+        System.out.println("12 - Inserir Monitor numa Materia");
+        System.out.println("13 - Consultar Alunos");
+        System.out.println("14 - Consultar Professores");
+        System.out.println("15 - Consultar Monitores");
+        System.out.println("16 - Consultar Materias");
         System.out.println("Digite -1 para sair");
         System.out.print("Sua opção: ");
      
         return sc.nextInt();
     }
     
-    // IMPORTANTÍSSIMO POR FAVOR LEMBRAR DISSO
-    // Criar funções de: Excluir Matéria, Adicionar Discussão, Consultas.
     
+    private static int menuInicio(){
+        System.out.println("");        
+        System.out.println("Informe o número da opção que desejas executar:");
+        System.out.println("1 - Criar Aluno");
+        System.out.println("2 - Criar Professor");
+        System.out.println("3 - Criar Monitor");
+        System.out.println("4 - Login");
+        return sc.nextInt();
+    }
+    
+    private static int menuAluno(){
+        System.out.println("");
+        System.out.println("Informe o número da opção que desejas executar:");
+        System.out.println("1 - Adicionar uma Discussao");
+        System.out.println("2 - Adicionar um Post");
+        System.out.println("3 - Adicionar uma Resposta");
+        System.out.println("4 - Consultas Professores");
+        System.out.println("5 - Consultar Monitores");
+        return sc.nextInt();
+    }
+    
+    private static int menuProfessor(){
+        System.out.println("");
+        System.out.println("Informe o número da opção que desejas executar: ");
+        System.out.println("1 - Adicionar Materia");
+        System.out.println("2 - Excluir Materia");
+        System.out.println("3 - Editar Materia");
+        System.out.println("4 - Adicionar Aluno");
+        System.out.println("5 - Adicionar Monitor");
+        System.out.println("6 - Adicionar Professor");
+        System.out.println("7 - Adicionar Discussao");
+        System.out.println("8 - Adicionar Post");
+        System.out.println("9 - Adicionar Resposta");
+        System.out.println("10 - Inserir Aluno numa Materia");
+        System.out.println("11 - Inserir Professor numa Materia");
+        System.out.println("12 - Inserir Monitor numa Materia");
+        System.out.println("13 - Consultar Alunos");
+        System.out.println("14 - Consultar Professores");
+        System.out.println("15 - Consultar Monitores");
+        System.out.println("16 - Consultar Materias");
+        System.out.println("Digite -1 para sair");
+        System.out.print("Sua opção: ");
+     
+        return sc.nextInt();
+    }
+    
+   private static int menuMonitor(){
+        System.out.println("");
+        System.out.println("Informe o número da opção que desejas executar:");
+        System.out.println("1 - Adicionar uma Discussao");
+        System.out.println("2 - Adicionar um Post");
+        System.out.println("3 - Adicionar uma Resposta");
+        System.out.println("4 - Consultas Professores");
+        System.out.println("5 - Consultar Monitores");
+        System.out.println("6 - Consultar Alunos");
+        return sc.nextInt();
+   }
+    
+    
+    /*
+    IMPORTANTE: Falta funções para adicionar os professores, monitores e alunos as matérias
+                Falta as funções de login e logout
+                Falta arrumar os bugs na discussão
+    */
+
+    /*
+    MIGUEL: Adicionar uma mensagem de sucesso ao fim de cada operação
+    */ 
+
     public static void criaMateria(){
         Materia materia = new Materia();
         Scanner sc = new Scanner(System.in);
@@ -121,7 +501,7 @@ public class main {
         materia.setLista_discussoes(lista_discussoes);
         ArrayList<Monitor> lista_monitores = new ArrayList<Monitor>();
         materia.setLista_monitores(lista_monitores);
-        sistema.AdicionaMateria(materia); // criar funcao no sistema
+        sistema.AdicionaMateria(materia); 
     }
     
     public static void excluiMateria(){
@@ -141,22 +521,7 @@ public class main {
         sc.nextLine();
         System.out.println("Qual o novo nome que deseja para a materia?");
         m.setNome(sc.nextLine());
-        System.out.println("Alteracao Concluida!");
-        
-        // mágica pra editar a materia depois de escolher;
-    
-    }
-    
-    public static Materia mostraMaterias(){
-        int opcao;
-        List<Materia> listaMaterias = new ArrayList();
-        listaMaterias = sistema.getListaMateria();
-        System.out.println("Qual materia gostaria de consultar?");
-        for (int i=0; i<listaMaterias.size(); i++){
-            System.out.println(+i+": "+ listaMaterias.get(i).getNome()+" ID: "+listaMaterias.get(i).getId());
-        }
-        opcao = sc.nextInt();
-        return listaMaterias.get(opcao);
+        System.out.println("Alteracao Concluida!");    
     }
     
     public static void criaAluno(){
@@ -172,6 +537,7 @@ public class main {
         a.setSenha(sc.nextLine());
         sc.nextLine();
         sistema.AdicionaAluno(a);
+        System.out.println("Aluno Adicionado!");
     }
     
     public static void criaMonitor(){
@@ -188,8 +554,9 @@ public class main {
         sc.nextLine();
         
         sistema.AdicionaMonitor(m);
+        System.out.println("Monitor Adicionado!");
     }
-    
+
     public static void criaProfessor(){
         Scanner sc = new Scanner(System.in);
         Professor p = new Professor();
@@ -204,70 +571,75 @@ public class main {
         sc.nextLine();
         
         sistema.AdicionaProfessor(p);
+        System.out.println("Professor Adicionado!");
     }
-    
-    
-    public static void adicionarPost(){
-        System.out.println("Para adicionar um post, precisa primeiro escolher uma materia");
-        Materia m = mostraMaterias(); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
-        List<Discussao> listaDiscussao = m.getLista_discussoes();
-        Discussao D = mostraDiscussoes(listaDiscussao);
-        List<Post> listaPosts = D.getListaPosts();
-        Post P = new Post();
-        System.out.println("Qual e a sua pergunta?");
-        P.setPergunta(sc.nextLine()); 
-        sc.nextLine();
-        listaPosts.add(P); // E aqui a lógica tem que "voltar". Post -> ListaPosts -> Discussao -> ListaDiscussao -> Materia // BUG NERVOSO NESSA LINHA
-        D.setListaPosts(listaPosts);
-        listaDiscussao.add(D);
-        m.AdicionaDiscussao(D);
-        System.out.println("Pergunta adicionada!");
-        
-    }
-    
+
     public static void adicionarDiscussao(){
+
         sc.nextLine();
         System.out.println("Para adicionar uma discussao, precisa primeiro escolher uma materia:");
-        Materia m = mostraMaterias();
+        Materia m = mostraMaterias("Qual materia gostaria de consultar?");
         Discussao d = new Discussao();
-        List<Post> listaPostsVazia = new ArrayList();
+
+        // List<Post> listaPostsVazia = new ArrayList();
         System.out.println("Qual o ID da discussao?");
         d.setID(sc.nextInt());
         sc.nextLine();
+
         System.out.println("Qual o Titulo da discussao?");
         d.setTitulo(sc.nextLine());
         sc.nextLine();
+
         System.out.println("Qual o Conteudo da discussao?");
         d.setConteudo(sc.nextLine());
-        d.setListaPosts(listaPostsVazia);
+        d.setListaPosts(new ArrayList<Post>());
         sc.nextLine();
+
         System.out.println("Discussao criada!");
         m.AdicionaDiscussao(d);
         System.out.println("Discussao adicionada a materia "+m.getNome());
         
     }
     
-    
-    public static Discussao mostraDiscussoes(List<Discussao> listaDiscussao){
-        int opcao;
-        Materia m = new Materia();
-        System.out.println("Em qual discussao gostaria de adicionar um post?");
-        for (int i=0; i<listaDiscussao.size(); i++){
-            System.out.println(+i+ ": Titulo: "+listaDiscussao.get(i).getTitulo());
-        }
-        opcao = sc.nextInt();
-        return listaDiscussao.get(opcao);
+    public static void adicionarPost(){
+
+        System.out.println("Para adicionar um post, precisa primeiro escolher uma materia");
+        Materia m = mostraMaterias("Qual materia gostaria de consultar?"); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
+        List<Discussao> listaDiscussao = m.getLista_discussoes();
+
+        Discussao D = mostraDiscussoes(listaDiscussao, "Em qual discussao gostaria de adicionar um post?");
+        List<Post> listaPosts = D.getListaPosts();
+        Post P = new Post();
+        
+        sc.nextLine();
+        System.out.println("Qual e a sua pergunta?");
+        P.setPergunta(sc.nextLine()); 
+        System.out.println(P.getPergunta());
+        sc.nextLine();
+        listaPosts.add(P); // E aqui a lógica tem que "voltar". 
+        
+        D.setListaPosts(listaPosts); // Post -> ListaPosts -> Discussao -> ListaDiscussao -> Materia  
+        listaDiscussao.add(D);
+        m.setLista_discussoes(listaDiscussao);
+        m.adicionarPost(P,D);
+
+        System.out.println("Pergunta adicionada!");
+        
     }
-    
     
     public static void adicionarResposta(){
         // Processo análogo de criação de post. Matéria -> ... -> Resposta
         System.out.println("Para adicionar uma resposta, precisa primeiro escolher uma materia");
-        Materia m = mostraMaterias(); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
-        List<Discussao> listaDiscussao = m.getLista_discussoes();
-        Discussao D = mostraDiscussoes(listaDiscussao);
-        List<Post> listaPosts = D.getListaPosts();
-        Post P = mostraPosts();
+        Materia m = mostraMaterias("Qual materia gostaria de consultar?"); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
+        List<Discussao> listaDiscussao = m.getLista_discussoes(); 
+
+        for(Discussao D : listaDiscussao)
+            System.out.println(D.toString());
+
+        // por algum motivo, na linha abaixo aparecem 3 copias da discussao
+        Discussao D = mostraDiscussoes(listaDiscussao, "Em qual discussao gostaria de adicionar uma resposta?");
+        List<Post> listaPosts = D.getListaPosts(); // lista de posts da discussão selecionada
+        Post P = mostraPosts(listaPosts); // prompt pro usuário escolher o post que ele quer responder
         System.out.println("Qual a sua resposta?");
         Resposta R = new Resposta();
         R.setResposta(sc.nextLine());
@@ -279,11 +651,93 @@ public class main {
         m.AdicionaDiscussao(D);
         System.out.println("Resposta adicionada!");
     }
-    
-    public static Post mostraPosts(){
+
+    public static void insereAlunoMateria(){
+        sc.nextLine();
+        Materia m = mostraMaterias("Escolha uma materia:");
+        Aluno a = mostraAluno("Escolha o Aluno:");
+        m.adicionarAluno(a);
+        System.out.println("Aluno "+a.getNome()+" adicionado na materia "+m.getNome());
+    }
+
+    public static void insereProfessorMateria(){
+        sc.nextLine();
+        Materia m = mostraMaterias("Escolha uma materia:");
+        Professor p = mostraProfessor("Escolha o Professor:");
+        m.adicionarProfessor(p);
+        System.out.println("Professor "+p.getNome()+" adicionado na materia "+m.getNome());
+    }
+
+    public static void insereMonitorMateria(){
+        sc.nextLine();
+        Materia m = mostraMaterias("Escolha uma materia:");
+        Monitor m1 = mostraMonitor("Escolha o Monitor:");
+        m.adicionarMonitor(m1);
+        System.out.println("Monitor "+m1.getNome()+" adicionado na materia "+m.getNome());
+    }
+
+    public static Materia mostraMaterias(String pergunta){
         int opcao;
-        List<Post> listaPosts = new ArrayList();
-        System.out.println("Qual Posts gostaria de responder? ");
+        List<Materia> listaMaterias = new ArrayList();
+        listaMaterias = sistema.getListaMateria();
+        System.out.println(pergunta);
+        for (int i=0; i<listaMaterias.size(); i++){
+            System.out.println(+i+": "+ listaMaterias.get(i).getNome()+" ID: "+listaMaterias.get(i).getId());
+        }
+        opcao = sc.nextInt();
+        return listaMaterias.get(opcao);
+    }
+
+    public static Professor mostraProfessor(String pergunta){
+        int opcao;
+        List<Professor> professores = new ArrayList();
+        professores = sistema.getListaProfessor();
+        System.out.println(pergunta);
+        for (int i=0; i<professores.size(); i++){
+            System.out.println(+i+": "+ professores.get(i).getNome()+" CPF: "+professores.get(i).getCPF());
+        }
+        opcao = sc.nextInt();
+        return professores.get(opcao);
+    }
+
+    public static Aluno mostraAluno(String pergunta){
+        int opcao;
+        List<Aluno> alunos = new ArrayList();
+        alunos = sistema.getListaAluno();
+        System.out.println(pergunta);
+        for (int i=0; i<alunos.size(); i++){
+            System.out.println(+i+": "+ alunos.get(i).getNome()+" CPF: "+alunos.get(i).getCpf());
+        }
+        opcao = sc.nextInt();
+        return alunos.get(opcao);
+    }
+
+    public static Monitor mostraMonitor(String pergunta){
+        int opcao;
+        List<Monitor> monitores = new ArrayList();
+        monitores = sistema.getListaMonitor();
+        System.out.println(pergunta);
+        for (int i=0; i<monitores.size(); i++){
+            System.out.println(+i+": "+ monitores.get(i).getNome()+" CPF: "+monitores.get(i).getCpf());
+        }
+        opcao = sc.nextInt();
+        return monitores.get(opcao);
+    }
+    
+    public static Discussao mostraDiscussoes(List<Discussao> listaDiscussao, String pergunta){
+        int opcao;
+        // Materia m = new Materia();
+        System.out.println(pergunta);
+        for (int i=0; i<listaDiscussao.size(); i++){
+            System.out.println(+i+ ": Titulo: "+listaDiscussao.get(i).getTitulo());
+        }
+        opcao = sc.nextInt();
+        return listaDiscussao.get(opcao);
+    }
+    
+    public static Post mostraPosts(List<Post> listaPosts){
+        int opcao;
+        System.out.println("Qual Post gostaria de responder ?");
         for (int i=0; i<listaPosts.size(); i++){
             System.out.println(+i+ ": Pergunta:"+listaPosts.get(i).getPergunta());
         }
@@ -291,6 +745,5 @@ public class main {
         return listaPosts.get(opcao);
     }
     
-
     
 }

@@ -1,20 +1,18 @@
 package dados;
 
+import java.io.Serializable;
 
-public class Resposta {
+public class Resposta implements Serializable{
     private String resposta;
     
 
+    
+    public Resposta(){
+        
+    }
+    
     public String getResposta() {
         return resposta;
-    }
-
-    public Resposta(){
-
-    }
-
-    public Resposta(String resposta) {
-        this.resposta = resposta;
     }
 
     public void setResposta(String resposta) {

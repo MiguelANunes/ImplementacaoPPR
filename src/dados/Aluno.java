@@ -48,11 +48,6 @@ public class Aluno extends Pessoa {
         // não sei o que tem que fazer aqui
     }
 
-    public void criarDiscussao(String titulo, String conteudo){
-        // ?
-        // imagino que seja só um new Discussao
-    }
-
     public void editarDiscussao(){
         // ?
         // creio que não é possível implementar esse método pois na classe
@@ -61,10 +56,6 @@ public class Aluno extends Pessoa {
         // é o mesmo que criou ela
         // (bem, dizer que é impossível é uma afirmação muito forte, mas seria uma grandissíma gambiarra
         // pra implementar, e eu creio que não é isso que o projeto queria)
-    }
-
-    public void avaliarMonitor(){
-        
     }
     
 }

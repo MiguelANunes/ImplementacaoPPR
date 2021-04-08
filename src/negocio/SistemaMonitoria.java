@@ -15,7 +15,7 @@ public class SistemaMonitoria {
 	private List<Post> listaPost = new ArrayList<>();
 	private List<Resposta> listaResposta = new ArrayList<>();
 	private int alunoCount=0,professorCount=0,materiaCount=0,monitorCount=0,postCount=0,respostaCount=0;
-	
+
 	
     public void AdicionaAluno(Aluno a) {
 		listaAluno.add(a);
@@ -150,20 +150,27 @@ public class SistemaMonitoria {
         respostaCount--;
     }
 
-    public void inicializarDados(){ // ler dos arquivos ao iniciar o programa
-
+    public void inicializarDados(){
+            // MIGUEL: Mudar essa função pra deixar cada abertura de arquivo dentro de um try/catch
+            // assim podemos saber quais arquivos estão vazios quando o programa inicia
         try{
-            // ver /home/miguel/Documentos/Udesc/Matérias/PPR/Implementação/Antigos/Projetos/TesteIO/src/Principal.java
-
-            // verificar se os arquivos já existem é completamente inútil, ele sempre existirão
             String currentpath = System.getProperty("user.dir");
-            InputStream arquivoMateria        = new FileInputStream(currentpath + "/src/armazenamento/Materia.txt");
-            ObjectInputStream leitorMateria   = new ObjectInputStream (arquivoMateria);
+
+            if(currentpath.endsWith("src")){ // caso "src" esteja no fim path do projeto, é removido, pois isso já está no
+                currentpath = currentpath.substring(0, currentpath.length()-3);// path do arquivo a ser aberto
+            }
+
+            InputStream arquivoMateria      = new FileInputStream(currentpath + "/src/armazenamento/Materia.txt");
+            ObjectInputStream leitorMateria = new ObjectInputStream (arquivoMateria);
             try {
                 while(true){
                     Materia m = new Materia();
                     m = (Materia) leitorMateria.readObject();
-                    AdicionaMateria(m);
+                    if(m.getNome() != null && !(m.getNome().isEmpty())){
+                        AdicionaMateria(m);
+                    }else{
+                        continue;
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -177,15 +184,20 @@ public class SistemaMonitoria {
             finally{
                 leitorMateria.close();
             }
-            
-            InputStream arquivoAluno          = new FileInputStream(currentpath + "/src/armazenamento/Aluno.txt");
-            ObjectInputStream leitorAluno     = new ObjectInputStream (arquivoAluno);
+
+            InputStream arquivoAluno      = new FileInputStream(currentpath + "/src/armazenamento/Aluno.txt");
+            ObjectInputStream leitorAluno = new ObjectInputStream (arquivoAluno);
 
             try {
                 while(true){
                     Aluno a = new Aluno();
                     a = (Aluno) leitorAluno.readObject();
-                    AdicionaAluno(a);
+
+                    if(a.getNome() != null && !(a.getNome().isEmpty())){
+                        AdicionaAluno(a);
+                    }else{
+                        continue;
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -206,7 +218,12 @@ public class SistemaMonitoria {
                 while(true){
                     Professor p = new Professor();
                     p = (Professor) leitorProfessor.readObject();
-                    AdicionaProfessor(p);
+
+                    if(p.getNome() != null && !(p.getNome().isEmpty())){
+                        AdicionaProfessor(p);
+                    }else{
+                        continue;
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -220,14 +237,19 @@ public class SistemaMonitoria {
                 leitorProfessor.close();
             }
 
-            InputStream arquivoMonitor        = new FileInputStream(currentpath + "/src/armazenamento//Monitor.txt");
-            ObjectInputStream leitorMonitor   = new ObjectInputStream (arquivoMonitor);
+            InputStream arquivoMonitor      = new FileInputStream(currentpath + "/src/armazenamento/Monitor.txt");
+            ObjectInputStream leitorMonitor = new ObjectInputStream (arquivoMonitor);
 
             try {
                 while(true){
                     Monitor m = new Monitor();
                     m = (Monitor) leitorMonitor.readObject();
-                    AdicionaMonitor(m);
+
+                    if(m.getNome() != null && !(m.getNome().isEmpty())){
+                        AdicionaMonitor(m);
+                    }else{
+                        continue;
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -240,23 +262,20 @@ public class SistemaMonitoria {
             }finally{
                 leitorMonitor.close();
             }
-
-            // InputStream arquivoAvaliacao      = new FileInputStream(".//armazenamento//Avaliacao.txt");
-            // ObjectInputStream leitorAvaliacao = new ObjectInputStream (arquivoAvaliacao);
-
-            // for(Avaliacao A: lista)
-
-            // InputStream arquivoDiscussao      = new FileInputStream(".//armazenamento//Discussão.txt");
-            // ObjectInputStream leitorDiscussao = new ObjectInputStream (arquivoDiscussao);
-
-            InputStream arquivoResposta       = new FileInputStream(currentpath + "/src/armazenamento//Resposta.txt");
+            /*
+            InputStream arquivoResposta       = new FileInputStream(".//armazenamento//Resposta.txt");
             ObjectInputStream leitorResposta  = new ObjectInputStream (arquivoResposta);
 
             try {
                 while(true){
                     Resposta r = new Resposta();
                     r = (Resposta) leitorResposta.readObject();
-                    AdicionaResposta(r);
+
+                    if(r.getResposta() != null && !(r.getResposta().isEmpty())){
+                        AdicionaResposta(r);
+                    }else{
+                        continue;
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -270,14 +289,19 @@ public class SistemaMonitoria {
                 leitorResposta.close();
             }
 
-            InputStream arquivoPost           = new FileInputStream(currentpath + "/src/armazenamento//Post.txt");
-            ObjectInputStream leitorPost      = new ObjectInputStream (arquivoPost);
+            InputStream arquivoPost      = new FileInputStream(".//armazenamento//Post.txt");
+            ObjectInputStream leitorPost = new ObjectInputStream (arquivoPost);
 
             try {
                 while(true){
                     Post p = new Post();
                     p = (Post) leitorPost.readObject();
-                    AdicionaPost(p);
+
+                    if(p.getPergunta() != null && !(p.getPergunta().isEmpty())){
+                        AdicionaPost(p);
+                    }else{
+                        continue;
+                    }
                 }                
             } catch (EOFException e) {
                 
@@ -290,10 +314,12 @@ public class SistemaMonitoria {
             }finally{
                 leitorPost.close();
             }
-
-            
-        }catch (IOException e){ // deixar IOException dava erro de compilação aqui, mas isso foi antes de fazer escrita
-            System.out.println("Erro ao salvar dados !"); // mudar de volta para isso para testar
+            */
+                 
+        /*}catch(EOFException ex){
+            // se der excessão de EOF não faz nada pois significa que os arquivos de dados estão vazios
+        */}catch (IOException e){
+            System.out.println("Erro ao ler dados !");
             e.printStackTrace();
         }
 
@@ -302,20 +328,23 @@ public class SistemaMonitoria {
     public void salvarDados(){ // salvar nos arquivos ao terminar o programa
 
         try{
-            // ver /home/miguel/Documentos/Udesc/Matérias/PPR/Implementação/Antigos/Projetos/TesteIO/src/Principal.java
 
-            // verificar se os arquivos já existem é completamente inútil, ele sempre existirão
             String currentpath = System.getProperty("user.dir");
-            OutputStream arquivoMateria          = new FileOutputStream(currentpath + "/src/armazenamento/Materia.txt");
-            ObjectOutputStream escritorMateria   = new ObjectOutputStream (arquivoMateria);
+
+            if(currentpath.endsWith("src")){ // caso "src" esteja no fim path do projeto, é removido, pois isso já está no
+                currentpath = currentpath.substring(0, currentpath.length()-3);// path do arquivo a ser aberto
+            }
+
+            OutputStream arquivoMateria        = new FileOutputStream(currentpath + "/src/armazenamento/Materia.txt");
+            ObjectOutputStream escritorMateria = new ObjectOutputStream (arquivoMateria);
 
             for (Materia M: listaMateria)
                 escritorMateria.writeObject(M);
             
             escritorMateria.close();
 
-            OutputStream arquivoAluno            = new FileOutputStream(currentpath + "/src/armazenamento/Aluno.txt");
-            ObjectOutputStream escritorAluno     = new ObjectOutputStream (arquivoAluno);
+            OutputStream arquivoAluno        = new FileOutputStream(currentpath + "/src/armazenamento/Aluno.txt");
+            ObjectOutputStream escritorAluno = new ObjectOutputStream (arquivoAluno);
 
             for(Aluno A: listaAluno)
                 escritorAluno.writeObject(A);
@@ -330,21 +359,22 @@ public class SistemaMonitoria {
             
                 escritorProfessor.close();
 
-            OutputStream arquivoMonitor          = new FileOutputStream(currentpath + "/src/armazenamento/Monitor.txt");
-            ObjectOutputStream escritorMonitor   = new ObjectOutputStream (arquivoMonitor);
+            OutputStream arquivoMonitor        = new FileOutputStream(currentpath + "/src/armazenamento/Monitor.txt");
+            ObjectOutputStream escritorMonitor = new ObjectOutputStream (arquivoMonitor);
 
             for(Monitor M: listaMonitor)
                 escritorMonitor.writeObject(M);
             
                 escritorMonitor.close();
 
-            // OutputStream arquivoAvaliacao        = new FileOutputStream(".//armazenamento//Avaliacao.txt");
-            // ObjectOutputStream escritorAvaliacao = new ObjectOutputStream (arquivoAvaliacao);
+            /*
+            OutputStream arquivoAvaliacao        = new FileOutputStream(".//armazenamento//Avaliacao.txt");
+            ObjectOutputStream escritorAvaliacao = new ObjectOutputStream (arquivoAvaliacao);
 
-            // for(Avaliacao A: lista)
+            for(Avaliacao A: lista)
 
-            // OutputStream arquivoDiscussao        = new FileOutputStream(".//armazenamento//Discussão.txt");
-            // ObjectOutputStream escritorDiscussao = new ObjectOutputStream (arquivoDiscussao);
+            OutputStream arquivoDiscussao        = new FileOutputStream(".//armazenamento//Discussão.txt");
+            ObjectOutputStream escritorDiscussao = new ObjectOutputStream (arquivoDiscussao);
 
             OutputStream arquivoResposta         = new FileOutputStream(currentpath + "/src/armazenamento/Resposta.txt");
             ObjectOutputStream escritorResposta  = new ObjectOutputStream (arquivoResposta);
@@ -361,10 +391,11 @@ public class SistemaMonitoria {
                 escritorPost.writeObject(P);
             
             escritorPost.close();
+            */
 
             
-        }catch (IOException e){ // deixar IOException dava erro de compilação aqui, mas isso foi antes de fazer escrita
-            System.out.println("Erro ao salvar dados !"); // mudar de volta para isso para testar
+        }catch (IOException e){ 
+            System.out.println("Erro ao salvar dados !");
             e.printStackTrace();
         }
     }
