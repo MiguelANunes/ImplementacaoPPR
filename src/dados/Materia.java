@@ -115,6 +115,10 @@ public class Materia implements Serializable {
     public void adicionarProfessor(Professor novo_professor){
         this.lista_professores.add(novo_professor);
     }
+
+    public void adicionarMonitor(Monitor novo_monitor){
+        this.lista_monitores.add(novo_monitor);
+    }
 }
 
     
