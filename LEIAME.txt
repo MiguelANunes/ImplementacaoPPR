@@ -1,6 +1,4 @@
-* Executar o Arquivo SistemaMonitoria.jar como administrador para que as funcionalidades referentes
-a pertinencia de dados funcionem corretamente
-* Manter os arquivos .txt de armanzenamento de dados dentro da pasta src/armazenamento para garantir que as funcionalidades referentes a pertinencia de dados funcionem corretamente
+* Executar o Arquivo SistemaMonitoria.jar como administrador para que as funcionalidades referentes a pertinencia de dados funcionem corretamente (tivemos dificuldade em garantir que isso funcione corretamente no Windows devido a restrições de escrita e leitura do SO, porém no Linux (Ubutu 20.04.2 LTS) não tivemos estas dificuldades)
+* Manter os arquivos .txt de armanzenamento de dados dentro da pasta src/armazenamento para garantir que as funcionalidades referentes a pertinencia de dados funcionem corretamente 
 * Para recompilar os arquivos no Windows, recomendados usar uma IDE
 * Para recompilar os arquivos no Linux, utilize o makefile ("make" para compilar e "make run" para executar)
-
