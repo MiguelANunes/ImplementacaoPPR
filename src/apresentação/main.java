@@ -422,8 +422,46 @@ public class main {
     }
     
     public static void login(){
+
         ArrayList<Pessoa> listaPessoas = sistema.getListaPessoa();
-        
+        String cpf = null;
+        String senha = null;
+
+        while(true){
+            System.out.println("Digite o CPF do Usuário: ");
+            sc.nextLine();
+            cpf = sc.nextLine();
+            sc.nextLine();
+    
+            System.out.prinln("Digite a Senha do Usuário: ");
+            sc.nextLine();
+            senha = sc.nextLine();
+            sc.nextLine();
+
+            for(Pessoa P: listaPessoas){
+                if(P.login(cpf, senha)){
+                    if(P instanceof Aluno){
+
+                    }
+                    if(P instanceof Monitor){
+
+                    }
+                    if(P instanceof Professor){
+                        
+                    }
+                }
+            }
+
+            System.out.println("Erro no login !");
+            System.out.println("Digite 1 para voltar, 2 para tentar novamente");
+
+            if(sc.nextInt() == 1)
+                break;
+
+        }
+
+
+
     }
     
 }
