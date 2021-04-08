@@ -23,9 +23,7 @@ public class Discussao implements Serializable {
         this.conteudo = conteudo;
         this.listaPosts = (ArrayList<Post>) listaPosts;
         this.autor = autor;
-    }
-    
-  
+    }  
 
     public void AdicionaPost(Post p) {
 		listaPost.add(p);

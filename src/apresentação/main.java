@@ -24,42 +24,93 @@ public class main {
                     case 1:
                         criaMateria();
                         break;
+                        
                     case 2:
                         excluiMateria();
                         break;
+
                     case 3:
                         Materia m = mostraMaterias();
                         editaMateria(m); 
                         break;
+
                     case 4:
                         criaAluno();
                         break;
+
                     case 5:
                         criaMonitor();
                         break;
+
                     case 6:
                         criaProfessor();
                         break;
+
                     case 7:
+                        sc.nextLine();
+                        adicionarDiscussao();
+                        break;
+
+                    case 8:
                         adicionarPost();
                         break;
-                    case 8:
+
+                    case 9:
                         adicionarResposta();
                         break;
-                    case 9:
+
+                    case 10:
                         sc.nextLine();
                         System.out.println("Consulta de Alunos");
                         List<Aluno> listaConsulta1 = sistema.consultaAluno();
                         for (Aluno a: listaConsulta1){
-                            System.out.println("Nome do Aluno: "+a.getNome());
-                            System.out.println("CPF do Aluno: "+a.getCpf());
+                            System.out.println("Nome  do Aluno: "+a.getNome());
+                            System.out.println("CPF   do Aluno: "+a.getCpf());
                             System.out.println("Senha do Aluno: "+a.getSenha());
                         }
                         break;
-                        
-                    case 10:
+
+                    case 11:
                         sc.nextLine();
-                        adicionarDiscussao();
+                        System.out.println("Consulta de Professores");
+                        List<Professor> listaConsulta2 = sistema.consultaProfessor();
+                        for (Professor a: listaConsulta2){
+                            System.out.println("Nome  do Professor: "+a.getNome());
+                            System.out.println("CPF   do Professor: "+a.getCpf());
+                            System.out.println("Senha do Professor: "+a.getSenha());
+                        }
+                        break;
+
+                    case 12:
+                        sc.nextLine();
+                        System.out.println("Consulta de Monitores");
+                        List<Monitor> listaConsulta3 = sistema.consultaMonitor();
+                        for (Monitor a: listaConsulta2){
+                            System.out.println("Nome  do Monitor: "+a.getNome());
+                            System.out.println("CPF   do Monitor: "+a.getCpf());
+                            System.out.println("Senha do Monitor: "+a.getSenha());
+                        }
+                        break;
+                    
+                    case 13:
+                        sc.nextLine();
+                        System.out.println("Consulta de Materias");
+                        List<Materia> listaConsulta4 = sistema.consultaMateria();
+                        for (Materia a: listaConsulta4){
+                            System.out.println("Nome  da Materia: "+a.getNome());
+                            System.out.println("ID    da Materia: "+a.getId());
+                            System.out.println("Quatidade de Discussões: "+a.getDiscCount());
+                            System.out.println("Alunos na Matéria: ");
+                            for(Aluno a1: a.getLista_alunos())
+                                System.out.println(a1.toString());
+                            System.out.println("Professores na Matéria: ");
+                            for(Professor a1: a.getLista_professores())
+                                System.out.println(a1.toString());
+                            System.out.println("Monitores na Matéria: ");
+                            for(Monitor a1: a.getLista_monitores())
+                                System.out.println(a1.toString());
+
+                        }
                         break;
                         
                 }
@@ -77,19 +128,25 @@ public class main {
         System.out.println("4 - Adicionar Aluno");
         System.out.println("5 - Adicionar Monitor");
         System.out.println("6 - Adicionar Professor");
-        System.out.println("7 - Adicionar Post");
-        System.out.println("8 - Adicionar Resposta");
-        System.out.println("9 - Consultar Alunos");
-        System.out.println("10 - Adicionar Discussao");
+        System.out.println("7 - Adicionar Discussao");
+        System.out.println("8 - Adicionar Post");
+        System.out.println("9 - Adicionar Resposta");
+        System.out.println("10 - Consultar Alunos");
+        System.out.println("11 - Consultar Professores");
+        System.out.println("12 - Consultar Monitores");
+        System.out.println("13 - Consultar Materias");
         System.out.println("Digite -1 para sair");
         System.out.print("Sua opção: ");
      
         return sc.nextInt();
     }
     
-    // IMPORTANTÍSSIMO POR FAVOR LEMBRAR DISSO
-    // Criar funções de: Excluir Matéria, Adicionar Discussão, Consultas.
-    
+    /*
+    IMPORTANTE: Falta funções para adicionar os professores, monitores e alunos as matérias
+                Falta as funções de login e logout
+                Falta arrumar os bugs na discussão
+    */
+
     /*
     MIGUEL: Adicionar uma mensagem de sucesso ao fim de cada operação
     */ 
@@ -134,18 +191,6 @@ public class main {
         System.out.println("Alteracao Concluida!");    
     }
     
-    public static Materia mostraMaterias(){
-        int opcao;
-        List<Materia> listaMaterias = new ArrayList();
-        listaMaterias = sistema.getListaMateria();
-        System.out.println("Qual materia gostaria de consultar?");
-        for (int i=0; i<listaMaterias.size(); i++){
-            System.out.println(+i+": "+ listaMaterias.get(i).getNome()+" ID: "+listaMaterias.get(i).getId());
-        }
-        opcao = sc.nextInt();
-        return listaMaterias.get(opcao);
-    }
-    
     public static void criaAluno(){
         Aluno a = new Aluno();
         sc.nextLine();
@@ -159,6 +204,7 @@ public class main {
         a.setSenha(sc.nextLine());
         sc.nextLine();
         sistema.AdicionaAluno(a);
+        System.out.println("Aluno Adicionado!");
     }
     
     public static void criaMonitor(){
@@ -175,8 +221,9 @@ public class main {
         sc.nextLine();
         
         sistema.AdicionaMonitor(m);
+        System.out.println("Monitor Adicionado!");
     }
-    
+
     public static void criaProfessor(){
         Scanner sc = new Scanner(System.in);
         Professor p = new Professor();
@@ -191,67 +238,72 @@ public class main {
         sc.nextLine();
         
         sistema.AdicionaProfessor(p);
+        System.out.println("Professor Adicionado!");
     }
-    
-    
-    public static void adicionarPost(){
-        System.out.println("Para adicionar um post, precisa primeiro escolher uma materia");
-        Materia m = mostraMaterias(); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
-        List<Discussao> listaDiscussao = m.getLista_discussoes();
-        Discussao D = mostraDiscussoes(listaDiscussao, "Em qual discussao gostaria de adicionar um post?");
-        List<Post> listaPosts = D.getListaPosts();
-        Post P = new Post();
-        System.out.println("Qual e a sua pergunta?");
-        P.setPergunta(sc.nextLine()); 
-        sc.nextLine();
-        listaPosts.add(P); /*BUG NERVOSO NESSA LINHA*/ // E aqui a lógica tem que "voltar". 
-        D.setListaPosts(listaPosts); // Post -> ListaPosts -> Discussao -> ListaDiscussao -> Materia  
-        listaDiscussao.add(D);
-        m.AdicionaDiscussao(D);
-        System.out.println("Pergunta adicionada!");
-        
-    }
-    
+
     public static void adicionarDiscussao(){
+
         sc.nextLine();
         System.out.println("Para adicionar uma discussao, precisa primeiro escolher uma materia:");
         Materia m = mostraMaterias();
         Discussao d = new Discussao();
-        List<Post> listaPostsVazia = new ArrayList();
+
+        // List<Post> listaPostsVazia = new ArrayList();
         System.out.println("Qual o ID da discussao?");
         d.setID(sc.nextInt());
         sc.nextLine();
+
         System.out.println("Qual o Titulo da discussao?");
         d.setTitulo(sc.nextLine());
         sc.nextLine();
+
         System.out.println("Qual o Conteudo da discussao?");
         d.setConteudo(sc.nextLine());
-        d.setListaPosts(listaPostsVazia);
+        d.setListaPosts(new ArrayList<Post>());
         sc.nextLine();
+
         System.out.println("Discussao criada!");
         m.AdicionaDiscussao(d);
         System.out.println("Discussao adicionada a materia "+m.getNome());
         
     }
     
-    
-    public static Discussao mostraDiscussoes(List<Discussao> listaDiscussao, String pergunta){
-        int opcao;
-        // Materia m = new Materia();
-        System.out.println(pergunta);
-        for (int i=0; i<listaDiscussao.size(); i++){
-            System.out.println(+i+ ": Titulo: "+listaDiscussao.get(i).getTitulo());
-        }
-        opcao = sc.nextInt();
-        return listaDiscussao.get(opcao);
+    public static void adicionarPost(){
+
+        System.out.println("Para adicionar um post, precisa primeiro escolher uma materia");
+        Materia m = mostraMaterias(); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
+        List<Discussao> listaDiscussao = m.getLista_discussoes();
+
+        Discussao D = mostraDiscussoes(listaDiscussao, "Em qual discussao gostaria de adicionar um post?");
+        List<Post> listaPosts = D.getListaPosts();
+        Post P = new Post();
+        
+        sc.nextLine();
+        System.out.println("Qual e a sua pergunta?");
+        P.setPergunta(sc.nextLine()); 
+        System.out.println(P.getPergunta());
+        sc.nextLine();
+        listaPosts.add(P); // E aqui a lógica tem que "voltar". 
+        
+        D.setListaPosts(listaPosts); // Post -> ListaPosts -> Discussao -> ListaDiscussao -> Materia  
+        listaDiscussao.add(D);
+        m.setLista_discussoes(listaDiscussao);
+        m.adicionarPost(P,D);
+
+        System.out.println("Pergunta adicionada!");
+        
     }
-    
     
     public static void adicionarResposta(){
         // Processo análogo de criação de post. Matéria -> ... -> Resposta
         System.out.println("Para adicionar uma resposta, precisa primeiro escolher uma materia");
         Materia m = mostraMaterias(); // Lógica: Materia -> ListaDiscussão -> Discussao -> ListaPosts -> Post
-        List<Discussao> listaDiscussao = m.getLista_discussoes(); // por algum motivo, na linha abaixo aparecem 3 copias da discussao
+        List<Discussao> listaDiscussao = m.getLista_discussoes(); 
+
+        for(Discussao D : listaDiscussao)
+            System.out.println(D.toString());
+
+        // por algum motivo, na linha abaixo aparecem 3 copias da discussao
         Discussao D = mostraDiscussoes(listaDiscussao, "Em qual discussao gostaria de adicionar uma resposta?");
         List<Post> listaPosts = D.getListaPosts(); // lista de posts da discussão selecionada
         Post P = mostraPosts(listaPosts); // prompt pro usuário escolher o post que ele quer responder
@@ -265,6 +317,30 @@ public class main {
         listaDiscussao.add(D);
         m.AdicionaDiscussao(D);
         System.out.println("Resposta adicionada!");
+    }
+
+
+    public static Materia mostraMaterias(){
+        int opcao;
+        List<Materia> listaMaterias = new ArrayList();
+        listaMaterias = sistema.getListaMateria();
+        System.out.println("Qual materia gostaria de consultar?");
+        for (int i=0; i<listaMaterias.size(); i++){
+            System.out.println(+i+": "+ listaMaterias.get(i).getNome()+" ID: "+listaMaterias.get(i).getId());
+        }
+        opcao = sc.nextInt();
+        return listaMaterias.get(opcao);
+    }
+    
+    public static Discussao mostraDiscussoes(List<Discussao> listaDiscussao, String pergunta){
+        int opcao;
+        // Materia m = new Materia();
+        System.out.println(pergunta);
+        for (int i=0; i<listaDiscussao.size(); i++){
+            System.out.println(+i+ ": Titulo: "+listaDiscussao.get(i).getTitulo());
+        }
+        opcao = sc.nextInt();
+        return listaDiscussao.get(opcao);
     }
     
     public static Post mostraPosts(List<Post> listaPosts){

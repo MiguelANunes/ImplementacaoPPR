@@ -37,6 +37,14 @@ public class Materia implements Serializable {
         discCount--;
     }
   
+    public void adicionarPost(Post novopost, Discussao alvo){
+        for (Discussao D : this.listaDiscussao){
+            if (D.getID() == alvo.getID()){
+               D.AdicionaPost(novopost);
+            }
+        }
+    }
+
     public List<Discussao> consultaDiscussao(){
         List<Discussao> listaRetorno = new ArrayList(listaDiscussao);
         return listaRetorno;
@@ -44,6 +52,10 @@ public class Materia implements Serializable {
   
     public int getId() {
         return id;
+    }
+
+    public int getDiscCount() {
+        return discCount;
     }
 
     public void setId(int id) {
@@ -69,7 +81,7 @@ public class Materia implements Serializable {
     public List<Professor> getLista_professores() {
         return this.lista_professores;
     }
-
+    
     public void setLista_professores(List<Professor> lista_professores) {
         this.lista_professores = lista_professores;
     }
@@ -102,20 +114,6 @@ public class Materia implements Serializable {
 
     public void adicionarProfessor(Professor novo_professor){
         this.lista_professores.add(novo_professor);
-    }
-
-    public void adicionarPost(Post novopost, Discussao alvo){
-        // entendo que o que esse m�todo deveria fazer � adicionar um post na discuss�o da mat�ria
-        // mas, da maneira que foi definido no projeto, n�o h� nenhum relacionamento entre discuss�o e 
-        // post, logo, n�o tem como adicionar um post h� uma discuss�o
-
-        // estamos alterando a assinatura do m�todo comparado ao que estava no projeto
-        for (Discussao D : this.listaDiscussao){
-            if (D.getID() == alvo.getID()){
-              //  D.setListaPosts(D.getListaPosts().add(novopost));
-                
-            }
-        }
     }
 }
 
