@@ -80,7 +80,7 @@ public class SistemaMonitoria {
     	return listaResposta;
     }
 
-    public ArrayList<Resposta> getListaPessoa(){
+    public ArrayList<Pessoa> getListaPessoa(){
     	return listaPessoa;
     }
     
@@ -217,6 +217,7 @@ public class SistemaMonitoria {
 
                     if(a.getNome() != null && !(a.getNome().isEmpty())){
                         AdicionaAluno(a);
+                        AdicionarPessoa(a);
                     }else{
                         continue;
                     }
@@ -243,6 +244,7 @@ public class SistemaMonitoria {
 
                     if(p.getNome() != null && !(p.getNome().isEmpty())){
                         AdicionaProfessor(p);
+                        AdicionarPessoa(p);
                     }else{
                         continue;
                     }
@@ -269,6 +271,7 @@ public class SistemaMonitoria {
 
                     if(m.getNome() != null && !(m.getNome().isEmpty())){
                         AdicionaMonitor(m);
+                        AdicionarPessoa(m);
                     }else{
                         continue;
                     }

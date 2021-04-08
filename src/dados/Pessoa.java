@@ -43,6 +43,11 @@ public class Pessoa  implements Serializable{
         return this.cpf.equals(cpf) && this.senha.equals(senha);
     }
 
+    @Override
+    public String toString() {
+        return "Pessoa [cpf=" + cpf + ", nome=" + nome + ", senha=" + senha + "]";
+    }
+    
     // public void logout(){
     //     System.out.println("Saido do Sistema !");
     //     System.exit(1);
